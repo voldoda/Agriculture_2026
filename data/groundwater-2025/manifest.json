@@ -1,0 +1,239 @@
+{
+  "format": "gzip-parts-v1",
+  "source": "2025 MODFLOW 6 monthly model heads with SRTM reference elevation",
+  "bytes": 119730265,
+  "sha256": "b37080b998697f512832e72c62229af5bf1696abbbf77ea9b9aa6122a21cdaf3",
+  "compression": "gzip",
+  "parts": [
+    {
+      "file": "groundwater-2025.json.gz.part-001",
+      "bytes": 655350,
+      "sha256": "5136b24dee30b19e5f3c9cf8616dfff5fa56c4c9f776223a2875eb1330df69fd"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-002",
+      "bytes": 655350,
+      "sha256": "23537d1cc8e6ae99fa06302f50d85e6df276b38c39189bf166e63124bacba1da"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-003",
+      "bytes": 655350,
+      "sha256": "5dd7f920bea27a84741e8bd115ca5163b4df9fcbd3fda61d650652f63d9a0f4a"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-004",
+      "bytes": 655350,
+      "sha256": "fc0ac367d485ca3bf85e3fe27220cf8a95a59d0dda451079ee5db00365abe5ce"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-005",
+      "bytes": 655350,
+      "sha256": "7c0fa70ab31047c09ec851e6a99e8985de26308447c9097b051a9bca1a59efc5"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-006",
+      "bytes": 655350,
+      "sha256": "1a4d934939e9a386ca24dda41e7987bc5e254f8d4bfd3909d3199e7e6aa370a7"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-007",
+      "bytes": 655350,
+      "sha256": "1ad1615e856596ed5ac30130d95c14d5c2db435aa3a8adbb5cf85c392e7ac35e"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-008",
+      "bytes": 655350,
+      "sha256": "672f8313b8da906c2d9c67c99b64e6634beecadf8709ae08f062f4c10fc41ac2"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-009",
+      "bytes": 655350,
+      "sha256": "0b60e2ae996e2b2b038e02b1b432ceaf59021b37755a3f59e7022023ef867c9c"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-010",
+      "bytes": 655350,
+      "sha256": "f6b99244fe4e4a2c4e2b23f7f8476f7dae1cae9c9625aada8ea8596769e9de7b"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-011",
+      "bytes": 655350,
+      "sha256": "8b6b6b06f89e3f520ff2e62e1c637e5b841450897fdba086e20e5ffb85955d57"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-012",
+      "bytes": 655350,
+      "sha256": "00517bc03646e4be5c7bfddba871bf9216239de0fe5e53002b632c7e675dc4fa"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-013",
+      "bytes": 655350,
+      "sha256": "c18709d1ddd3426f401dd580827f139790eeadf27ba89e4d2a433e7748821feb"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-014",
+      "bytes": 655350,
+      "sha256": "bc64bd51762f4e4c5ca3be4fe1750413cb0425a8399a863b451eb5e045d47f87"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-015",
+      "bytes": 655350,
+      "sha256": "290b30106255d11476c121c790d396a76bca3304c98ba3c3fb22baf66aa667c6"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-016",
+      "bytes": 655350,
+      "sha256": "73155b7aa272be516561b085eb27461b8bcf145b80c9c9b699fb2cd19aa0d314"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-017",
+      "bytes": 655350,
+      "sha256": "564525e15c6b34f9553c692a97017c8a01446dde4c7e388fb8d1bdfe0c4697d3"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-018",
+      "bytes": 655350,
+      "sha256": "e1c1b7766aa21560e09e6ba8101c320146359b04590a285acdfdc956c37d3f02"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-019",
+      "bytes": 655350,
+      "sha256": "099c925bffe9aa6168752b1e39dfc31f263f80799a13c72e2f8fd98f8f5f7f4c"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-020",
+      "bytes": 655350,
+      "sha256": "999d55906b89cdb0886c740c1b68c702233999ee5c9f184bef9e968a85c35eac"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-021",
+      "bytes": 655350,
+      "sha256": "065718f140f2199779ba733ad6599a38438f7bd796346d21fce465ebd7cf7c25"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-022",
+      "bytes": 655350,
+      "sha256": "2dcfbf8215943add9150efb2953176ccfda41a661cff851764576ba3bacba6b9"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-023",
+      "bytes": 655350,
+      "sha256": "d618ee0cfb14c5aca43814d0258b6af90928249775a88c71dbdcdf61c7fb4a50"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-024",
+      "bytes": 655350,
+      "sha256": "277a8de5ffe07b2436746203755e105ceef5b69b92f0cee30b2eaa122348f8d8"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-025",
+      "bytes": 655350,
+      "sha256": "a9088639b4d4f00dbbefb0d6c3e682d0396ffb6896583bd336d8f613a8d2edcb"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-026",
+      "bytes": 655350,
+      "sha256": "845364e6dc24fe1c8eaa7a2f470fb134d198510c4351a23ff26c6abcd4ed2e4e"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-027",
+      "bytes": 655350,
+      "sha256": "25be5204408d639794d0bb2bb55c1e32ccbeb90623dab8979cf58b6a6a17ccb7"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-028",
+      "bytes": 655350,
+      "sha256": "77dccec45549b2dc903965b8c83f1a703a540bdfb58c7623231b74037147ef7a"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-029",
+      "bytes": 655350,
+      "sha256": "ea5320d9ef225bc1ce496472a3884bfe7cc87f39a7f056da28d89748af4a8046"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-030",
+      "bytes": 655350,
+      "sha256": "17b1a3a9e308546f81ef93a0e4947a4160362d7f7f1a8038ea9add96766dc0ec"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-031",
+      "bytes": 655350,
+      "sha256": "83a56fe2ab1d8bd4923f1dfcd4403debec48b8b9a22e96d260c1abbfb0416eb3"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-032",
+      "bytes": 655350,
+      "sha256": "aaef2dc55c60e47ea27def04135cedc2f497831786f3c1f5201bc94d873ccc16"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-033",
+      "bytes": 655350,
+      "sha256": "69cf53cd541c171e12dd43a03f752c6d4eb28b3315d0bf5f2beb8ad8cac640dc"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-034",
+      "bytes": 655350,
+      "sha256": "690cbe4988551ac10264f9b9e0a688d88b78ec7725fa3ef57b37c072a3f78a3e"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-035",
+      "bytes": 655350,
+      "sha256": "b2890c91cb5d60183adf477a8674d8c5467b082bc1652dd478876eeca3fdcae9"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-036",
+      "bytes": 655350,
+      "sha256": "24c66c1f82743411b70db7d6870b6dee3d903948bcf86fce2b80628f64e1f6d6"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-037",
+      "bytes": 655350,
+      "sha256": "7599bd706159f07508ff972c793fcb68ce19e6eb6b6802178b547f53d216860b"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-038",
+      "bytes": 655350,
+      "sha256": "ca86405c4be24ac5188a1192834eccbdd3c4334a7b7670eafaff31ca06cdd6f0"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-039",
+      "bytes": 655350,
+      "sha256": "9c2db9e423eb9c91b46f7efb750630c3a925171b1b52cdb42df9bf72dc48648a"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-040",
+      "bytes": 655350,
+      "sha256": "4ac29cd31856c45f0fbabe469fa669a3ebbfaa1424f62cb8018b3cd7994ba328"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-041",
+      "bytes": 655350,
+      "sha256": "42e66fe83a2f8bd3283ed32d436b78128ca1814e267bde335e5328ef7abdda04"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-042",
+      "bytes": 655350,
+      "sha256": "cf1ae0c0597aa5ad320f563a6bd060b0e226c03d2b0a6e726b69921687eb8c3a"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-043",
+      "bytes": 655350,
+      "sha256": "50b8f8c002d1fdbbfa362a0574782af41bca6e4ed97781eda548211b9f276de2"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-044",
+      "bytes": 655350,
+      "sha256": "5388535be7fdea27264895d4e503758e3d7893dc73ca2ffbb3ca0e4313696c41"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-045",
+      "bytes": 655350,
+      "sha256": "546646bbdb22a4dca08ae12033ad1dce935b3cf5005e87bc2ece167eb410c5c7"
+    },
+    {
+      "file": "groundwater-2025.json.gz.part-046",
+      "bytes": 350851,
+      "sha256": "7b9651788cd142fcab96155c61a0c5a0b0bd2a8cd609a3459009394a91efad9f"
+    }
+  ]
+}

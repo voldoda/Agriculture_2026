@@ -1,0 +1,160 @@
+{
+  "generatedAt": "2026-10-01T06:43:44.024Z",
+  "year": 2025,
+  "sourceName": "Heads_2025_Monthly_5179",
+  "datasetSha256": "b37080b998697f512832e72c62229af5bf1696abbbf77ea9b9aa6122a21cdaf3",
+  "sourceHashes": {
+    "shp": "3d76d5684bf59f7371fe9d5c9858849ac0746d74c1065ff7fc022ba86f5f69cc",
+    "shx": "701bd7c9b308599b2bb1402dedb4c67a97d4accfb62f36d5dcc224c39c7f496b",
+    "dbf": "6dc9b7738b7d18f22b4b7aa3c1d65dcdeab4a8c823b74ac9bad8f1d42e5c9cee",
+    "prj": "95bbd13c6f3d841fa1ddf977eacc576cd069e3001a7998ae9b75f92920445e9d",
+    "cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+  },
+  "crs": "EPSG:5179",
+  "records": 235935,
+  "displayedCells": 113076,
+  "months": [
+    {
+      "month": "01",
+      "active": 113076,
+      "missing": 122859,
+      "min": 11.02656487414544,
+      "max": 110.08852293038386,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    },
+    {
+      "month": "02",
+      "active": 113076,
+      "missing": 122859,
+      "min": 10.844029582147016,
+      "max": 110.0956216940825,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    },
+    {
+      "month": "03",
+      "active": 113076,
+      "missing": 122859,
+      "min": 10.71383415597714,
+      "max": 110.14737308207505,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    },
+    {
+      "month": "04",
+      "active": 113076,
+      "missing": 122859,
+      "min": 10.59592912861551,
+      "max": 110.23194042559086,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    },
+    {
+      "month": "05",
+      "active": 113076,
+      "missing": 122859,
+      "min": 10.463440673988346,
+      "max": 110.32040971599947,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    },
+    {
+      "month": "06",
+      "active": 113076,
+      "missing": 122859,
+      "min": 10.469476643761565,
+      "max": 110.5373639502092,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    },
+    {
+      "month": "07",
+      "active": 113076,
+      "missing": 122859,
+      "min": 10.681348493538055,
+      "max": 110.96187881441487,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    },
+    {
+      "month": "08",
+      "active": 113076,
+      "missing": 122859,
+      "min": 10.690357546481092,
+      "max": 111.18108605009151,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    },
+    {
+      "month": "09",
+      "active": 113076,
+      "missing": 122859,
+      "min": 10.765767765053415,
+      "max": 111.45559115231315,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    },
+    {
+      "month": "10",
+      "active": 113076,
+      "missing": 122859,
+      "min": 10.764507194342096,
+      "max": 111.65550854755342,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    },
+    {
+      "month": "11",
+      "active": 113076,
+      "missing": 122859,
+      "min": 10.592860978254249,
+      "max": 111.67932274963655,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    },
+    {
+      "month": "12",
+      "active": 113076,
+      "missing": 122859,
+      "min": 10.417362098753845,
+      "max": 111.70802870961886,
+      "compared": 113076,
+      "mismatches": 0,
+      "maxDifference": 0
+    }
+  ],
+  "cellSizeM": 49.9756653275108,
+  "cellHeightM": 49.97675151890144,
+  "geometryChecked": true,
+  "headPrecision": "source_decimal_preserved",
+  "sourceDecimalTextChecked": true,
+  "sourceDataMatches": true,
+  "operationalReady": false,
+  "status": "source_checked_model_unvalidated",
+  "blockers": [
+    {
+      "code": "NO_OBSERVATIONS",
+      "message": "동일 지점·기간의 실측 자료와 대조하지 않았습니다."
+    },
+    {
+      "code": "NO_SOLVER_EVIDENCE",
+      "message": "모델 수렴·물수지 및 입력 조건 검증이 필요합니다."
+    },
+    {
+      "code": "UNVALIDATED_DROUGHT_STORAGE",
+      "message": "지표고는 공개 DEM 참고값이며 수위와 높이 기준·수면 해석이 미확인입니다. 수위 저하 지수는 공식 가뭄 판정이 아니며 저류량은 산정 자료 없음입니다. 관측정·관리구역은 예시입니다."
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+/* Navy / white interface theme. Keep Leaflet data layers and their legends intact.
+   Scoped utility overrides let desktop, mobile, dialogs and alerts share one palette. */
+:root {
+  color-scheme: light;
+  --ui-primary: #245DA8;
+  --ui-surface: #FFFFFF;
+  --ui-border: #D5DFEA;
+  --ui-text: #25364A;
+  --ui-muted: #596B80;
+}
+
+#root [class~="bg-background"]:not(:where(.leaflet-pane *)) {
+  background-color:#F3F6FA;
+}
+
+#root [class~="bg-panel"]:not(:where(.leaflet-pane *)),
+#root [class~="bg-panel/90"]:not(:where(.leaflet-pane *)) {
+  background-color:#FFFFFF;
+}
+
+#root [class*="bg-slate-"]:not(:where(.leaflet-pane *)) {
+  background-color:#F5F7FA;
+}
+
+#root [class*="border-slate-"]:not(:where(.leaflet-pane *)),
+#root [class*="border-panelBorder"]:not(:where(.leaflet-pane *)) {
+  border-color:#D5DFEA;
+}
+
+#root [class*="text-slate-1"]:not(:where(.leaflet-pane *)),
+#root [class*="text-slate-2"]:not(:where(.leaflet-pane *)),
+#root [class*="text-slate-3"]:not(:where(.leaflet-pane *)) {
+  color:#25364A;
+}
+
+#root [class*="text-slate-4"]:not(:where(.leaflet-pane *)),
+#root [class*="text-slate-5"]:not(:where(.leaflet-pane *)),
+#root [class*="text-slate-6"]:not(:where(.leaflet-pane *)) {
+  color:#596B80;
+}
+
+#root [class*="text-cyan-"]:not(:where(.leaflet-pane *)),
+#root [class*="text-blue-"]:not(:where(.leaflet-pane *)),
+#root [class*="text-indigo-"]:not(:where(.leaflet-pane *)),
+#root [class*="text-purple-"]:not(:where(.leaflet-pane *)) {
+  color:#245DA8;
+}
+
+#root [class*="bg-cyan-"]:not(:where(.leaflet-pane *)),
+#root [class*="bg-indigo-"]:not(:where(.leaflet-pane *)),
+#root [class~="bg-blue-500/10"]:not(:where(.leaflet-pane *)),
+#root [class~="bg-blue-950/40"]:not(:where(.leaflet-pane *)) {
+  background-color:#EAF1FA;
+}
+
+#root [class*="border-cyan-"]:not(:where(.leaflet-pane *)),
+#root [class*="border-indigo-"]:not(:where(.leaflet-pane *)),
+#root [class*="border-blue-"]:not(:where(.leaflet-pane *)) {
+  border-color:#B3C7DC;
+}
+
+#root [class~="bg-primaryAccent"]:not(:where(.leaflet-pane *)),
+#root [class~="bg-blue-600"]:not(:where(.leaflet-pane *)) {
+  background-color:#245DA8;
+}
+
+#root [class~="bg-blue-600"]:not(:where(.leaflet-pane *)) {
+  color:#FFFFFF;
+}
+
+#root [class*="text-amber-"]:not(:where(.leaflet-pane *)),
+#root [class*="text-yellow-"]:not(:where(.leaflet-pane *)) {
+  color:#825B07;
+}
+
+#root [class*="text-orange-"]:not(:where(.leaflet-pane *)) {
+  color:#A34F11;
+}
+
+#root [class*="text-red-"]:not(:where(.leaflet-pane *)) {
+  color:#B4232E;
+}
+
+#root [class*="text-emerald-"]:not(:where(.leaflet-pane *)) {
+  color:#21745B;
+}
+
+#root [class*="bg-amber-950"]:not(:where(.leaflet-pane *)),
+#root [class~="bg-amber-500/20"]:not(:where(.leaflet-pane *)),
+#root [class~="bg-amber-500/10"]:not(:where(.leaflet-pane *)),
+#root [class~="bg-yellow-500/20"]:not(:where(.leaflet-pane *)) {
+  background-color:#FFF5DC;
+}
+
+#root [class~="bg-red-500/20"]:not(:where(.leaflet-pane *)),
+#root [class~="bg-red-500/25"]:not(:where(.leaflet-pane *)) {
+  background-color:#FCECEE;
+}
+
+#root [class~="bg-orange-500/20"]:not(:where(.leaflet-pane *)) {
+  background-color:#FFF1E7;
+}
+
+#root [class~="bg-emerald-500/10"]:not(:where(.leaflet-pane *)) {
+  background-color:#EAF4EF;
+}
+
+#root [class~="border-amber-800/50"]:not(:where(.leaflet-pane *)) {
+  border-color:#E9D7AD;
+}
+
+#root header[class] {
+  background-color:#17324D;
+  color:#FFFFFF;
+}
+
+#root header[class] [class*="text-slate-"] {
+  color:#D7E2ED;
+}
+
+#root header[class] h1 {
+  color:#FFFFFF;
+}
+
+#root header[class] [class*="text-cyan-"],
+#root header[class] [class*="text-purple-"],
+#root header[class] [class*="text-emerald-"] {
+  color:#B7D8E5;
+}
+
+#root header[class] [class*="text-amber-"] {
+  color:#F2D590;
+}
+
+#root header[class] [class*="bg-slate-"],
+#root header[class] [class*="bg-cyan-"] {
+  background-color:rgba(255,255,255,0.09);
+}
+
+#root header[class] [class*="border-"] {
+  border-color:rgba(255,255,255,0.18);
+}
+
+#root input {
+  accent-color:#245DA8;
+}
+
+#root .recharts-cartesian-axis-tick-value {
+  fill:#596B80;
+}
+
+#root .recharts-cartesian-grid line {
+  stroke:#D5DFEA;
+}
+
+#root [class~="text-white"]:not(:where(.leaflet-pane *)) {
+  color:#25364A;
+}
+
+#root button[class~="bg-primaryAccent"],
+#root button[class~="bg-blue-600"],
+#root button[class~="bg-primaryAccent"] *,
+#root button[class~="bg-blue-600"] * {
+  color:#FFFFFF;
+}
+
+#root [class~="bg-blue-600"][class],
+#root [class~="bg-primaryAccent"][class] {
+  color:#FFFFFF;
+}
+
+/* Interaction states and surfaces that are only visible after opening a dialog. */
+body {
+  background-color: #F3F6FA;
+  color: var(--ui-text);
+}
+
+#root [class~="bg-blue-500/20"],
+#root [class~="bg-blue-600/20"],
+#root [class~="bg-blue-600/30"] {
+  background-color: #EAF1FA;
+}
+
+#root [class~="bg-emerald-500/20"]:not(:where(.leaflet-pane *)) {
+  background-color: #EAF4EF;
+}
+
+#root [role="dialog"] > div,
+#root [role="status"] {
+  background-color: var(--ui-surface);
+}
+
+#root [class~="hover:bg-slate-800"]:hover,
+#root [class~="hover:bg-slate-700"]:hover,
+#root [class~="active:bg-slate-700"]:active {
+  background-color: #E5EDF6;
+}
+
+#root [class~="hover:text-white"]:hover {
+  color: var(--ui-text);
+}
+
+#root [class~="bg-primaryAccent"]:hover,
+#root [class~="bg-blue-600"]:hover {
+  background-color: #1A4A88;
+  color: #FFFFFF;
+}
+
+#root header[class] button:hover {
+  background-color: #2B4B6A;
+  color: #FFFFFF;
+}
+
+/* Match average-series labels with the purple line; keep danger colors separate. */
+#root label[class*="text-purple-"],
+#root label [class*="text-purple-"] {
+  color: #7E22CE;
+}
+
+::-webkit-scrollbar-track { background: #F3F6FA; }
+::-webkit-scrollbar-thumb { background: #B7C6D7; }
+::-webkit-scrollbar-thumb:hover { background: #8FA3BA; }
+
+/* Use the same score proportions for the bar and its two-line labels. */
+.drought-legend-columns {
+  display: grid;
+  grid-template-columns: 35fr 20fr 20fr 25fr;
+}
+
+.drought-legend-transparent {
+  background: conic-gradient(#E2E8F0 25%, #FFFFFF 0 50%, #E2E8F0 0 75%, #FFFFFF 0) 0 0 / 8px 8px;
+}
+
+/* Preserve cell colours while map tiles are scaled during zoom animation. */
+.groundwater-surface canvas.leaflet-tile { image-rendering: pixelated; }
+
+/* Data tiles are complete frames, not network images that need a fade-in. */
+.groundwater-surface .leaflet-tile { opacity: 1 !important; transition: none !important; }
+
+/* Keep map guidance distinct from neutral status panels. */
+#root [role="status"].map-display-notice {
+  background-color: #EAF1FA;
+  border-color: #B3C7DC;
+  color: #245DA8;
+}
+#root [role="status"].map-display-notice[data-tone="warning"] {
+  background-color: #FFF5E6;
+  border-color: #E8C58D;
+  color: #955B10;
+}
+
+
+
+
+/* Monthly hydraulic-head contours */
+.head-contour-label { display: inline-block; padding: 1px 5px; border: 1px solid #E4BC5C; border-radius: 4px; background: #FFF8DE; color: #263C53; font: 700 10px/1.4 monospace; white-space: nowrap; pointer-events: none; }
+.head-contour-tooltip { background: #FFFFFF; color: #263C53; border: 1px solid #D8B65B; font-size: 11px; }

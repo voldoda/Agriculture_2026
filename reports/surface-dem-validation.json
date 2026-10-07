@@ -1,0 +1,330 @@
+{
+  "generatedAt": "2026-10-01T06:35:38.360Z",
+  "cells": 113076,
+  "valid": 113076,
+  "missing": 0,
+  "min": 7.041540958950918,
+  "max": 626.2485843774186,
+  "originalHeadAndGeometryDigest": "0c8c15ec764c9265f55918156aebd29c96f26b82a33b03a355c59a4ef536ebc2",
+  "headsAndGeometryPreserved": true,
+  "beforeDatasetSha256": "e6db5b37a08ba31079382fa66672911b242c64bc64e5a36c62a6f72b0b7b78eb",
+  "afterDatasetSha256": "b37080b998697f512832e72c62229af5bf1696abbbf77ea9b9aa6122a21cdaf3",
+  "provenance": [
+    {
+      "name": "N36E126",
+      "url": "https://step.esa.int/auxdata/dem/SRTMGL1/N36E126.SRTMGL1.hgt.zip",
+      "archiveSha256": "5bdeee33a46370dbc37328dfc6dc52d3b0259d05b2082aa4024af3849eac2829",
+      "hgtSha256": "e0bdaeef76e3916910b92053f9f3580a663ded6fc602176d43e6af9a8a5ec650",
+      "samplesPerSide": 3601
+    },
+    {
+      "name": "N36E127",
+      "url": "https://step.esa.int/auxdata/dem/SRTMGL1/N36E127.SRTMGL1.hgt.zip",
+      "archiveSha256": "b50c80927dc64560dc733bce87d14a8f21362d23ff5f5ad6c9a0c13bf4efc237",
+      "hgtSha256": "95ed28a285075463608a9c1a83edf57d045a0453f128e7e0d87707e1c694e836",
+      "samplesPerSide": 3601
+    }
+  ],
+  "crossCheck": {
+    "count": 37,
+    "maxDifferenceM": 0.48816000015625605,
+    "checks": [
+      {
+        "id": "YG-R524_C396",
+        "localInterpolatedM": 10.579999999959,
+        "apiRoundedM": 11,
+        "differenceM": 0.420000000041,
+        "asterM": 10
+      },
+      {
+        "id": "YG-R428_C318",
+        "localInterpolatedM": 28.759999999992715,
+        "apiRoundedM": 29,
+        "differenceM": 0.24000000000728505,
+        "asterM": 26
+      },
+      {
+        "id": "YG-R432_C389",
+        "localInterpolatedM": 106.45043200000079,
+        "apiRoundedM": 106,
+        "differenceM": 0.450432000000788,
+        "asterM": 95
+      },
+      {
+        "id": "YG-R439_C224",
+        "localInterpolatedM": 100.19257599996718,
+        "apiRoundedM": 100,
+        "differenceM": 0.19257599996717545,
+        "asterM": 92
+      },
+      {
+        "id": "YG-R445_C225",
+        "localInterpolatedM": 120.26243200005516,
+        "apiRoundedM": 120,
+        "differenceM": 0.2624320000551563,
+        "asterM": 116
+      },
+      {
+        "id": "YG-R404_C85",
+        "localInterpolatedM": 113.07334400006981,
+        "apiRoundedM": 113,
+        "differenceM": 0.07334400006980957,
+        "asterM": 110
+      },
+      {
+        "id": "YG-R330_C69",
+        "localInterpolatedM": 231.55622400003583,
+        "apiRoundedM": 232,
+        "differenceM": 0.44377599996417416,
+        "asterM": 235
+      },
+      {
+        "id": "YG-R314_C259",
+        "localInterpolatedM": 230.72403199964134,
+        "apiRoundedM": 231,
+        "differenceM": 0.27596800035865954,
+        "asterM": 244
+      },
+      {
+        "id": "YG-R349_C259",
+        "localInterpolatedM": 304.198943999792,
+        "apiRoundedM": 304,
+        "differenceM": 0.19894399979199306,
+        "asterM": 305
+      },
+      {
+        "id": "YG-R86_C254",
+        "localInterpolatedM": 306.119296000105,
+        "apiRoundedM": 306,
+        "differenceM": 0.11929600010500963,
+        "asterM": 318
+      },
+      {
+        "id": "YG-R130_C231",
+        "localInterpolatedM": 455.2196320000209,
+        "apiRoundedM": 455,
+        "differenceM": 0.21963200002090844,
+        "asterM": 463
+      },
+      {
+        "id": "YG-R285_C360",
+        "localInterpolatedM": 579.4273920001338,
+        "apiRoundedM": 579,
+        "differenceM": 0.4273920001337501,
+        "asterM": 581
+      },
+      {
+        "id": "YG-R103_C154",
+        "localInterpolatedM": 328.0824960000806,
+        "apiRoundedM": 328,
+        "differenceM": 0.08249600008059588,
+        "asterM": 341
+      },
+      {
+        "id": "YG-R78_C165",
+        "localInterpolatedM": 357.74399999989805,
+        "apiRoundedM": 358,
+        "differenceM": 0.2560000001019489,
+        "asterM": 369
+      },
+      {
+        "id": "YG-R81_C222",
+        "localInterpolatedM": 299.7752960001085,
+        "apiRoundedM": 300,
+        "differenceM": 0.22470399989151701,
+        "asterM": 309
+      },
+      {
+        "id": "YG-R84_C282",
+        "localInterpolatedM": 621.713312000023,
+        "apiRoundedM": 622,
+        "differenceM": 0.28668799997694805,
+        "asterM": 627
+      },
+      {
+        "id": "YG-R89_C284",
+        "localInterpolatedM": 607.7635840000279,
+        "apiRoundedM": 608,
+        "differenceM": 0.2364159999721096,
+        "asterM": 605
+      },
+      {
+        "id": "YG-R192_C116",
+        "localInterpolatedM": 259.38643199995965,
+        "apiRoundedM": 259,
+        "differenceM": 0.3864319999596546,
+        "asterM": 271
+      },
+      {
+        "id": "YG-R171_C151",
+        "localInterpolatedM": 180.04803200009792,
+        "apiRoundedM": 180,
+        "differenceM": 0.04803200009791908,
+        "asterM": 180
+      },
+      {
+        "id": "YG-R171_C226",
+        "localInterpolatedM": 427.94463999985874,
+        "apiRoundedM": 428,
+        "differenceM": 0.0553600001412633,
+        "asterM": 430
+      },
+      {
+        "id": "YG-R171_C302",
+        "localInterpolatedM": 405.3769280000007,
+        "apiRoundedM": 405,
+        "differenceM": 0.3769280000007029,
+        "asterM": 406
+      },
+      {
+        "id": "YG-R193_C366",
+        "localInterpolatedM": 477.43136000002545,
+        "apiRoundedM": 477,
+        "differenceM": 0.4313600000254496,
+        "asterM": 480
+      },
+      {
+        "id": "YG-R272_C75",
+        "localInterpolatedM": 353.89633600003765,
+        "apiRoundedM": 354,
+        "differenceM": 0.10366399996235032,
+        "asterM": 350
+      },
+      {
+        "id": "YG-R272_C151",
+        "localInterpolatedM": 132.11351999994582,
+        "apiRoundedM": 132,
+        "differenceM": 0.11351999994582229,
+        "asterM": 128
+      },
+      {
+        "id": "YG-R272_C226",
+        "localInterpolatedM": 327.093440000014,
+        "apiRoundedM": 327,
+        "differenceM": 0.09344000001402719,
+        "asterM": 322
+      },
+      {
+        "id": "YG-R272_C302",
+        "localInterpolatedM": 192.30822400005002,
+        "apiRoundedM": 192,
+        "differenceM": 0.3082240000500178,
+        "asterM": 192
+      },
+      {
+        "id": "YG-R265_C368",
+        "localInterpolatedM": 518.7930240000196,
+        "apiRoundedM": 519,
+        "differenceM": 0.2069759999803864,
+        "asterM": 525
+      },
+      {
+        "id": "YG-R374_C75",
+        "localInterpolatedM": 181.10892800002335,
+        "apiRoundedM": 181,
+        "differenceM": 0.10892800002335434,
+        "asterM": 187
+      },
+      {
+        "id": "YG-R374_C151",
+        "localInterpolatedM": 62.58342400000572,
+        "apiRoundedM": 63,
+        "differenceM": 0.4165759999942793,
+        "asterM": 59
+      },
+      {
+        "id": "YG-R374_C226",
+        "localInterpolatedM": 45.7440000000147,
+        "apiRoundedM": 46,
+        "differenceM": 0.2559999999852991,
+        "asterM": 43
+      },
+      {
+        "id": "YG-R374_C302",
+        "localInterpolatedM": 68.23200000000224,
+        "apiRoundedM": 68,
+        "differenceM": 0.23200000000224463,
+        "asterM": 69
+      },
+      {
+        "id": "YG-R374_C378",
+        "localInterpolatedM": 336.8394879999659,
+        "apiRoundedM": 337,
+        "differenceM": 0.16051200003408894,
+        "asterM": 339
+      },
+      {
+        "id": "YG-R476_C75",
+        "localInterpolatedM": 258.00175999993155,
+        "apiRoundedM": 258,
+        "differenceM": 0.0017599999315507375,
+        "asterM": 263
+      },
+      {
+        "id": "YG-R476_C151",
+        "localInterpolatedM": 142.48816000015626,
+        "apiRoundedM": 142,
+        "differenceM": 0.48816000015625605,
+        "asterM": 141
+      },
+      {
+        "id": "YG-R468_C221",
+        "localInterpolatedM": 280.08889599998037,
+        "apiRoundedM": 280,
+        "differenceM": 0.08889599998036601,
+        "asterM": 287
+      },
+      {
+        "id": "YG-R476_C302",
+        "localInterpolatedM": 72.09915200011206,
+        "apiRoundedM": 72,
+        "differenceM": 0.09915200011205627,
+        "asterM": 58
+      },
+      {
+        "id": "YG-R476_C378",
+        "localInterpolatedM": 14.611999999979389,
+        "apiRoundedM": 15,
+        "differenceM": 0.38800000002061097,
+        "asterM": 14
+      }
+    ]
+  },
+  "surfaceElevation": {
+    "source": "SRTMGL1",
+    "version": "003",
+    "distribution": "ESA STEP SRTMGL1",
+    "acquisitionPeriod": "2000-02",
+    "horizontalCrs": "EPSG:4326",
+    "verticalDatum": "EGM96",
+    "unit": "m",
+    "sourceResolutionArcSeconds": 1,
+    "nominalResolutionM": 30,
+    "method": "bilinear_at_original_50m_cell_center",
+    "status": "reference_dem",
+    "modelHeadDatumCompatibility": "unconfirmed",
+    "waterTableInterpretation": "unconfirmed",
+    "validCells": 113076,
+    "missingCells": 0,
+    "minM": 7.041540958950918,
+    "maxM": 626.2485843774186,
+    "legacyExampleCells": 28269,
+    "tiles": [
+      {
+        "name": "N36E126",
+        "url": "https://step.esa.int/auxdata/dem/SRTMGL1/N36E126.SRTMGL1.hgt.zip",
+        "archiveSha256": "5bdeee33a46370dbc37328dfc6dc52d3b0259d05b2082aa4024af3849eac2829",
+        "hgtSha256": "e0bdaeef76e3916910b92053f9f3580a663ded6fc602176d43e6af9a8a5ec650",
+        "samplesPerSide": 3601
+      },
+      {
+        "name": "N36E127",
+        "url": "https://step.esa.int/auxdata/dem/SRTMGL1/N36E127.SRTMGL1.hgt.zip",
+        "archiveSha256": "b50c80927dc64560dc733bce87d14a8f21362d23ff5f5ad6c9a0c13bf4efc237",
+        "hgtSha256": "95ed28a285075463608a9c1a83edf57d045a0453f128e7e0d87707e1c694e836",
+        "samplesPerSide": 3601
+      }
+    ],
+    "note": "Past satellite DEM, not a 2025 surveyed ground surface. Interpolation decimals do not imply centimetre accuracy."
+  }
+}
