@@ -55,6 +55,7 @@ export default function MobileBottomSheet({
 
   return (
     <div
+      data-map-overlay="bottom"
       className={`fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 border-t border-slate-700 rounded-t-2xl shadow-2xl backdrop-blur-md transition-all duration-300 ease-in-out select-none flex flex-col ${
         sheetState === 'peek' ? 'h-20' : sheetState === 'half' ? 'h-[52vh]' : 'h-[85vh]'
       }`}
@@ -144,7 +145,7 @@ export default function MobileBottomSheet({
             </div>
           </div>
 
-          <p className="text-[11px] text-amber-200/90">{dataset?.metadata?.year}년 1~12월 월말 모의자료. 평균·추세는 월말 값 기준이며, 지표고는 공개 DEM 참고값이며 수위 저하 지수는 공식 가뭄 판정이 아닙니다.</p>
+          <p className="text-[11px] text-amber-200/90">{dataset?.metadata?.year}년 1~12월 월말 자료. 평균·추세는 월말 값 기준이며, 지표고는 공개 DEM 참고값이며 수위 저하 지수는 공식 가뭄 판정이 아닙니다.</p>
           {/* Time-series Chart */}
           <div className="bg-slate-800/60 rounded-xl p-3 border border-slate-700/60 space-y-2.5">
             <div className="flex items-center justify-between">

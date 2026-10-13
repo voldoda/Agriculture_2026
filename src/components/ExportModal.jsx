@@ -70,7 +70,7 @@ export default function ExportModal({ isOpen, onClose, dataset, selectedMonth, c
             </div>
             <div>
               <h3 className="font-bold text-base text-slate-100">데이터 내보내기 (Export)</h3>
-              <p className="text-xs text-slate-400">월말 모의수위, DEM 참고 지표고·표고 차이 및 예시 수위 저하 지수 추출</p>
+              <p className="text-xs text-slate-400">월말 수위, DEM 참고 지표고·표고 차이 및 예시 수위 저하 지수 추출</p>
             </div>
           </div>
           <button

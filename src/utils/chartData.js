@@ -5,7 +5,7 @@ export function buildChartData(grid, metadata) {
     const monthKey = String(i + 1).padStart(2, '0');
     const source = getHeadSource(monthKey, metadata);
     return { month: `${i + 1}월`, monthKey, source,
-      fullMonthName: `${metadata?.year ? metadata.year + '년 ' : ''}${i + 1}월 말 (${source === 'model_sample' ? '제공 모델 자료' : '예시값'})`,
+      fullMonthName: `${metadata?.year ? metadata.year + '년 ' : ''}${i + 1}월 말${source === 'model_sample' ? '' : ' (예시값)'}`,
       head: Number.isFinite(grid.heads?.[monthKey]) ? grid.heads[monthKey] : null };
   });
   const valid = rows.map((row, x) => ({ x, y: row.head })).filter(p => p.y !== null);

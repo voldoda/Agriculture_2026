@@ -148,12 +148,17 @@ export default function LeftSidebar({
                 const isCalibrated = getHeadSource(mStr, metadata) === 'model_sample';
                 return (
                   <option key={mStr} value={mStr}>
-                    {i + 1}월 {isCalibrated ? '(모델 자료)' : '(예시값)'}
+                    {i + 1}월{!isCalibrated && ' (예시값)'}
                   </option>
                 );
               })}
             </select>
           </div>
+        </div>
+
+        <div className="text-[11px] text-slate-400 leading-relaxed">
+          <p>자료 기준: {metadata?.year ? `${metadata.year}년` : '해당 연도'} 월말 수위</p>
+          <p>산정 방식: MODFLOW 6 계산 결과</p>
         </div>
 
         {isAnnualRange && <p className="text-[11px] text-slate-400 leading-relaxed" role="status">연간 변동 폭은 해당 연도 1~12월 전체 자료로 계산하므로 월 선택·재생·계절별 퀵 필터를 사용하지 않습니다.</p>}
@@ -319,7 +324,7 @@ export default function LeftSidebar({
                   className="w-4 h-4 disabled:opacity-50 disabled:cursor-not-allowed" />
                 <span className="w-2.5 h-1 rounded-sm bg-amber-400"></span>지하수위 등수두선
               </span>
-              <span className="text-[10px] text-amber-400">월말 모의자료</span>
+              <span className="text-[10px] text-amber-400">월말 자료</span>
             </label>
             {contourDisabled ? <p className="text-[10px] text-slate-400">수위 표고에서 표시합니다. 편차·변화량·연간 변동 폭에서는 자동으로 숨깁니다.</p> : <>
               <p className="text-[10px] text-slate-400">{metadata?.year}년 {Number(selectedMonth)}월 말 · 원본 50m 수위에서 생성</p>

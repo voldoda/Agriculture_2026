@@ -72,7 +72,7 @@ export function metricCaption(month, mode = 'head', year = 2025) {
   if (mode === 'deviation') return `${year}년 ${Number(month)}월 − 같은 격자의 ${year}년 12개월 평균`;
   if (mode === 'range') return `${year}년 1~12월 최고−최저 · 월 선택과 무관`;
   if (mode === 'change') return previousMonth(month)
-    ? `${year}년 ${Number(month)}월 − ${Number(previousMonth(month))}월 · 월말 모의수위 차이`
+    ? `${year}년 ${Number(month)}월 − ${Number(previousMonth(month))}월 · 월말 수위 차이`
     : `${year - 1}년 12월 자료 없음 · 전월 대비 비교 불가`;
   return `${year}년 ${Number(month)}월 말 · 지하수위 표고`;
 }

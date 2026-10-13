@@ -76,7 +76,7 @@ export default function MonthComparison({ dataset, selectedMonth, initialMode, o
           </label>
           <p>월 카드를 선택하면 해당 월과 표시 항목을 본 지도에서 확인합니다.</p>
           <p className="text-slate-400">배경지도와 보조 레이어를 제외하여 수위의 색상 차이에 집중합니다. 카드 수치는 비교 가능한 격자의 단순 평균입니다.</p>
-          {mode === 'deviation' && <p className="text-slate-400">편차 = 해당 월 수위 − 같은 격자의 12개월 월말 모의수위 평균. 장기 평년값에 대한 편차나 가뭄 등급이 아닙니다.</p>}
+          {mode === 'deviation' && <p className="text-slate-400">편차 = 해당 월 수위 − 같은 격자의 12개월 월말 수위 평균. 장기 평년값에 대한 편차나 가뭄 등급이 아닙니다.</p>}
         </div>
         <HeadLegend mode={mode} month={selectedMonth} year={dataset.metadata.year} comparison />
       </div>

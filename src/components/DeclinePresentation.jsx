@@ -12,14 +12,14 @@ export function DeclineNotice({ month, year, layers, summary }) {
     <Info className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
     <div className="min-w-0 space-y-1.5 leading-relaxed">
       <strong className="block">{year}년 {Number(month)}월 · {layers.declineMetric === 'amount' ? '실제 저하량(cm)' : '예시 수위 저하'}</strong>
-      <p>각 격자의 해당 연도 최고 월말 모의수위와 선택 월 수위의 차이입니다. 전월 대비 변화량이 아닙니다.</p>
+      <p>각 격자의 해당 연도 최고 월말 수위와 선택 월 수위의 차이입니다. 전월 대비 변화량이 아닙니다.</p>
       {summary.valid > 0 ? <p>계산 가능한 격자 {countText(summary.valid)}개 · 저하량 {summary.minM.toFixed(2)}~{summary.maxM.toFixed(2)}m.
         {summary.highlighted === 0 ? ' 지수 35% 이상 구역은 없습니다.' : ` 지수 35% 이상 ${countText(summary.highlighted)}개 (${(summary.highlighted / summary.valid * 100).toFixed(2)}%).`}</p>
         : <p>비교에 필요한 12개월 수위 자료가 없습니다.</p>}
       <p>{filtered ? '저하 작음은 투명하게 숨깁니다. 숨겨진 격자도 클릭하여 조회할 수 있습니다.'
         : layers.declineMetric === 'amount' ? '0~350cm 고정 색상 범위로 전체 격자를 표시합니다.' : '저하 작음도 옅은 청록색으로 표시합니다.'}</p>
       {summary.missing > 0 && <p>비교 자료 없음: {countText(summary.missing)}개 · 회색 표시.</p>}
-      <p className="text-[10px] text-slate-400">월말 모의자료 기반의 예시 분석입니다. 공식 가뭄 판정이나 전년 대비 변화가 아닙니다.</p>
+      <p className="text-[10px] text-slate-400">월말 자료 기반의 예시 분석입니다. 공식 가뭄 판정이나 전년 대비 변화가 아닙니다.</p>
     </div>
   </div>;
 }

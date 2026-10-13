@@ -255,10 +255,10 @@ export default function RightPanel({
             <BarChart3 className="w-4 h-4 text-blue-400" />
             <h2 className="font-semibold text-xs tracking-wider uppercase">시계열 수위 분석 (Time-series)</h2>
           </div>
-          <span className="text-[10px] text-slate-400">{dataset?.metadata?.year}년 · 월말 모의자료</span>
+          <span className="text-[10px] text-slate-400">{dataset?.metadata?.year}년 · 월말 자료</span>
         </div>
 
-        <p className="text-[11px] text-amber-200/90">1~12월: 월말 모의 지하수위(월평균 아님). 평균·추세는 월말 값 기준입니다. 지표고는 공개 DEM 참고값이며 수위 저하 지수는 공식 가뭄 판정이 아닙니다.</p>
+        <p className="text-[11px] text-amber-200/90">1~12월: 월말 지하수위(월평균 아님). 평균·추세는 월말 값 기준입니다. 지표고는 공개 DEM 참고값이며 수위 저하 지수는 공식 가뭄 판정이 아닙니다.</p>
         {/* Toggles for Average Line & Trend Line */}
         <div className="flex items-center justify-between bg-slate-800/70 border border-slate-700/60 rounded-lg px-2.5 py-1.5 text-xs">
           {/* Toggle 1: Average Line (Purple Dashed) */}

@@ -3,6 +3,10 @@
 /dist/
 /.vite/
 /coverage/
+/.cache/
+/playwright-report/
+/test-results/
+*.tsbuildinfo
 /src/data/groundwater_data.json
 
 # Local credentials (keep the configuration template)
@@ -11,6 +15,8 @@
 !.env.example
 *.pem
 *.key
+*.p12
+*.pfx
 
 # Original inputs, backups, work files and document deliverables
 /01_Sample/

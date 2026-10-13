@@ -21,7 +21,7 @@ export default function WaterLevelAlerts({ report, onSelectGrid, wide = false, i
       <div className="flex items-start gap-2 text-slate-200">
         <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
         <div><h2 className="font-semibold text-xs">수위 변동 경보</h2>
-          <p className="text-[10px] text-slate-400 mt-1">{report.year}년 {Number(report.month)}월{report.previousMonth ? `−${Number(report.previousMonth)}월` : ''} · 월말 모의수위 비교</p></div>
+          <p className="text-[10px] text-slate-400 mt-1">{report.year}년 {Number(report.month)}월{report.previousMonth ? `−${Number(report.previousMonth)}월` : ''} · 월말 수위 비교</p></div>
       </div>
       <span className="text-[10px] font-semibold rounded border border-blue-500/30 bg-blue-500/10 text-blue-400 px-1.5 py-0.5 whitespace-nowrap">
         {report.available && report.comparedCells > 0 ? `${count(report.alerts.length)}개 격자` : '산정 불가'}

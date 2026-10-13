@@ -10,7 +10,7 @@ export default function HeadChangeSummary({ grid, month, isAnnualRange = false }
     <div className="flex justify-between gap-2"><span className="text-slate-400">연평균 대비 편차</span><strong className="font-mono text-slate-200">{metricText(gridMetricValue(grid, month, 'deviation'), 'deviation')}</strong></div>
     <div className="flex justify-between gap-2"><span className="text-slate-400">전월 대비 {previousMonth(month) ? `(${Number(month)}월−${Number(previousMonth(month))}월)` : '(1월)'}</span><strong className="font-mono text-slate-200">{metricText(change, 'change')}</strong></div>
     <div className="flex justify-between gap-2"><span className="text-slate-400">연간 변동 폭 (최고−최저)</span><strong className="font-mono text-slate-200">{metricText(range, 'range')}</strong></div>
-    <p className="text-[10px] text-slate-400">원본 월말 모의수위로 계산{previousMonth(month) ? ' · 상승 + / 하강 −' : ' · 전년도 12월 자료 없음'}</p>
+    <p className="text-[10px] text-slate-400">원본 월말 수위로 계산{previousMonth(month) ? ' · 상승 + / 하강 −' : ' · 전년도 12월 자료 없음'}</p>
     <p className="text-[10px] text-slate-400">평균은 해당 연도 12개 월말 값의 산술평균이며, 장기 평년값·가뭄 등급이 아닙니다.</p>
   </div>;
 }

@@ -41,7 +41,7 @@ export function useHeadContours({ mapInstanceRef, dataset, layers }) {
           weight, opacity: 1 }).bindTooltip(
           `<strong>${data.metadata.year}년 ${Number(month)}월 말 · 등수두선</strong><br>` +
           `수위 표고 EL. ${contour.elevation}m · 표시 간격 ${interval}m<br>` +
-          '원본 50m 모의수위를 선형 보간한 동일 수위 연결선',
+          '원본 50m 수위를 선형 보간한 동일 수위 연결선',
           { sticky: true, className: 'head-contour-tooltip' }).addTo(group);
         // Short disconnected contours stay visible, but do not flood the map with labels.
         const lengthM = contour.coordinates5179.slice(1).reduce((sum, p, i) => {

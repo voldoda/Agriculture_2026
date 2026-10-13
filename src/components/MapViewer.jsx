@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import L from 'leaflet';
 import { useHeadContours } from '../hooks/useHeadContours';
 import { contourIntervalM, contoursSuppressed } from '../utils/headContours';
@@ -10,6 +10,7 @@ import { surfaceComparison } from '../utils/surfaceElevation';
 import { calculateGridDrought } from '../utils/droughtUtils';
 import { declineCaption } from '../utils/declineDisplay';
 import { gridMetricValue, metricText, metricCaption, METRIC_LABELS } from '../utils/headDisplay';
+import { watershedBounds, unobscuredWatershedPadding, createWatershedViewport } from '../utils/watershedViewport';
 import { 
   Maximize2, 
   RotateCcw, 
@@ -37,6 +38,14 @@ export default function MapViewer({
 }) {
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
+  const viewportRef = useRef(null);
+  const headCaptionRef = useRef(null);
+  const declineCaptionRef = useRef(null);
+  const coordinateBarRef = useRef(null);
+  const navigationRef = useRef(null);
+  const bounds = useMemo(() => watershedBounds(dataset), [dataset]);
+  const boundsRef = useRef(bounds);
+  boundsRef.current = bounds;
 
   const drainageLayerGroupRef = useRef(null);
 
@@ -69,6 +78,8 @@ export default function MapViewer({
     const map = L.map(mapContainerRef.current, {
       center: [centerLat, centerLon],
       zoom: 12,
+      zoomSnap: 0.05,
+      zoomDelta: 0.5,
       zoomControl: false,
       attributionControl: true,
       preferCanvas: true // Canvas rendering for high performance interlocking polygons
@@ -126,23 +137,58 @@ export default function MapViewer({
       });
     });
 
-    // Auto-resize Map on container dimension changes (e.g. Right Panel Drag-to-resize)
-    const resizeObserver = new ResizeObserver(() => {
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current.invalidateSize();
-      }
+    const viewport = createWatershedViewport(map, {
+      getBounds: () => boundsRef.current,
+      getPadding: size => {
+        const mapRect = mapContainerRef.current.getBoundingClientRect();
+        const overlays = [headCaptionRef.current, declineCaptionRef.current, coordinateBarRef.current,
+          document.querySelector('[data-map-overlay="bottom"]')];
+        let bottomInset = 0;
+        for (const overlay of overlays) {
+          if (!overlay) continue;
+          const rect = overlay.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0 && rect.bottom > mapRect.top && rect.top < mapRect.bottom) {
+            bottomInset = Math.max(bottomInset, mapRect.bottom - Math.max(mapRect.top, rect.top));
+          }
+        }
+        const navigation = navigationRef.current?.getBoundingClientRect();
+        const rightInset = navigation?.width > 0 ? Math.max(0, mapRect.right - navigation.left) : 0;
+        return unobscuredWatershedPadding(map, boundsRef.current, size, {
+          bottomInset, rightInset,
+          navigationBottom: navigation?.height > 0 ? Math.max(0, navigation.bottom - mapRect.top) : 0,
+        });
+      },
     });
-    if (mapContainerRef.current) {
-      resizeObserver.observe(mapContainerRef.current);
-    }
+    viewportRef.current = viewport;
+    // Throttle resize events, including responsive side panels and bottom sheets.
+    let bottomSheet = null;
+    const observeBottomSheet = () => {
+      const next = document.querySelector('[data-map-overlay="bottom"]');
+      if (next === bottomSheet) return;
+      if (bottomSheet) resizeObserver.unobserve(bottomSheet);
+      bottomSheet = next;
+      if (bottomSheet) resizeObserver.observe(bottomSheet);
+    };
+    const resizeObserver = new ResizeObserver(() => {
+      observeBottomSheet();
+      viewport.resize();
+    });
+    resizeObserver.observe(mapContainerRef.current);
+    observeBottomSheet();
+    viewport.reset();
 
     return () => {
       resizeObserver.disconnect();
+      viewport.dispose();
+      viewportRef.current = null;
       cancelAnimationFrame(coordinateFrame);
       map.remove();
       mapInstanceRef.current = null;
     };
   }, []);
+
+  useEffect(() => { viewportRef.current?.resize(); },
+    [bounds, layers.grid, layers.heatmap, layers.gridMetric, layers.contour]);
 
   // Handle Basemap Switch
   useEffect(() => {
@@ -293,7 +339,10 @@ export default function MapViewer({
   // Move only when the selected cell changes, not on every timeline tick.
   useEffect(() => {
     const map = mapInstanceRef.current;
-    if (map && selectedGrid) map.flyTo([selectedGrid.lat, selectedGrid.lon], Math.max(map.getZoom(), 14), { duration: 0.8 });
+    if (map && selectedGrid) {
+      viewportRef.current?.preserve();
+      map.flyTo([selectedGrid.lat, selectedGrid.lon], Math.max(map.getZoom(), 14), { duration: 0.8 });
+    }
     else if (map) map.stop(); // Cancel an unfinished selection flight without resetting the view.
   }, [selectedGrid]);
 
@@ -431,9 +480,8 @@ export default function MapViewer({
   }, [selectedGrid, gridShape, selectedMonth, layers.gridMetric, layers.heatmap, layers.declineMetric]);
 
   const handleResetBounds = () => {
-    const map = mapInstanceRef.current;
-    if (!map) return;
-    map.flyTo([centerLat, centerLon], 12, { duration: 1.2 });
+    setHoveredGrid(null);
+    viewportRef.current?.reset();
   };
 
   return (
@@ -443,23 +491,23 @@ export default function MapViewer({
           React must not replace those classes when display settings change. */}
       {contourError && <div role="alert" className="absolute left-3 top-3 z-[600] rounded border border-amber-300 bg-amber-50 p-3 text-xs text-amber-900">등수두선을 표시하지 못했습니다: {contourError}<br />레이어를 껐다 켜면 다시 요청합니다.</div>}
       <div ref={mapContainerRef} className="w-full h-full z-10" />
-      {layers.grid && <div role="status" className="absolute bottom-14 left-3 z-20 max-w-[calc(100%-2rem)] bg-panel/90 border border-panelBorder rounded-lg px-3 py-2 shadow text-[11px] text-slate-200">
+      {layers.grid && <div ref={headCaptionRef} role="status" className="absolute bottom-14 left-3 z-20 max-w-[calc(100%-2rem)] bg-panel/90 border border-panelBorder rounded-lg px-3 py-2 shadow text-[11px] text-slate-200">
         <strong>{METRIC_LABELS[layers.gridMetric ?? 'head']}</strong>
         <span className="ml-2">{metricCaption(selectedMonth, layers.gridMetric, metadata.year)}</span>
       </div>}
-      {layers.heatmap && !layers.grid && <div role="status" aria-label="표시 중인 수위 저하 지도" className="absolute bottom-14 left-3 z-20 max-w-[calc(100%-2rem)] bg-panel/90 border border-panelBorder rounded-lg px-3 py-2 shadow text-[11px] text-slate-200">
+      {layers.heatmap && !layers.grid && <div ref={declineCaptionRef} role="status" aria-label="표시 중인 수위 저하 지도" className="absolute bottom-14 left-3 z-20 max-w-[calc(100%-2rem)] bg-panel/90 border border-panelBorder rounded-lg px-3 py-2 shadow text-[11px] text-slate-200">
         {declineCaption(selectedMonth, layers, metadata.year)}
       </div>}
 
       {layers.contour && !contoursSuppressed(layers) && !contourError && (
         <div role="status" aria-label="등수두선 설명" className="absolute top-3 md:top-4 left-3 md:left-4 max-w-[calc(100%-8rem)] z-20 bg-panel/95 border border-amber-400 rounded-lg px-3 py-2 shadow text-[11px] text-slate-200">
           <strong>{metadata.year}년 {Number(selectedMonth)}월 등수두선 · {contourIntervalM(layers, currentZoom)}m 간격</strong>
-          <p className="mt-1 text-slate-400">월말 모의수위 · 동일 수위 표고를 연결한 선</p>
+          <p className="mt-1 text-slate-400">월말 수위 · 동일 수위 표고를 연결한 선</p>
         </div>
       )}
 
       {/* Floating Map Navigation & Basemap Switcher Controls */}
-      <div className="absolute top-3 md:top-4 right-3 md:right-4 z-20 flex flex-col space-y-2">
+      <div ref={navigationRef} className="absolute top-3 md:top-4 right-3 md:right-4 z-20 flex flex-col space-y-2">
         {/* Reset View Button */}
         <button
           onClick={handleResetBounds}
@@ -473,6 +521,7 @@ export default function MapViewer({
         <button
           onClick={() => {
             if (navigator.geolocation && mapInstanceRef.current) {
+              viewportRef.current?.preserve();
               navigator.geolocation.getCurrentPosition(
                 (pos) => {
                   const { latitude, longitude } = pos.coords;
@@ -534,7 +583,7 @@ export default function MapViewer({
       </div>
 
       {/* Real-time Bottom Coordinate & Scale Indicator Bar */}
-      <div className="hidden md:flex absolute bottom-3 left-3 z-20 bg-panel/90 border border-panelBorder px-3 py-1.5 rounded-lg shadow-lg backdrop-blur text-[11px] text-slate-300 items-center space-x-4 font-mono select-none">
+      <div ref={coordinateBarRef} className="hidden md:flex absolute bottom-3 left-3 z-20 bg-panel/90 border border-panelBorder px-3 py-1.5 rounded-lg shadow-lg backdrop-blur text-[11px] text-slate-300 items-center space-x-4 font-mono select-none">
         <div className="flex items-center gap-1.5">
           <Compass className="w-3.5 h-3.5 text-blue-400" />
           <span>WGS84: {mouseCoord.lat}°N, {mouseCoord.lon}°E</span>

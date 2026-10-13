@@ -1,5 +1,5 @@
 export const SOURCE_MONTHS = Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, '0'));
-export const DATA_NOTICE = '2025년 1~12월 월말 MODFLOW 6 모의수위입니다(월평균 아님). 지표고는 SRTM 약30m DEM 참고값(2000년 취득)이며, 수위와 높이 기준·수면 해석이 미확인되어 표고 차이는 확정 지하수심이 아닙니다. 수위 저하 단계는 연내 최고수위 대비 예시 지수이며 공식 가뭄 판정이 아닙니다. 저류량은 산정 자료 없음입니다. 관측정·관리구역은 예시입니다.';
+export const DATA_NOTICE = '2025년 1~12월 월말 수위입니다(월평균 아님). 산정 방식: MODFLOW 6 계산 결과. 지표고는 SRTM 약30m DEM 참고값(2000년 취득)이며, 수위와 높이 기준·수면 해석이 미확인되어 표고 차이는 확정 지하수심이 아닙니다. 수위 저하 단계는 연내 최고수위 대비 예시 지수이며 공식 가뭄 판정이 아닙니다. 저류량은 산정 자료 없음입니다. 관측정·관리구역은 예시입니다.';
 
 export function getHeadSource(month, metadata) {
   return (metadata?.sourceMonths ?? metadata?.calibratedMonths ?? SOURCE_MONTHS).includes(month) ? 'model_sample' : 'synthetic_example';

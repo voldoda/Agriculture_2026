@@ -23,7 +23,7 @@ export default function MapDisplayNotice({ mode = 'head', month, metadata }) {
     },
     head: {
       title: `${yearLabel} ${monthLabel} 말 · 수위 표고`,
-      text: '해당 월말의 모의 지하수위 표고(m)를 나타냅니다. 색상으로 지점별 수위의 높고 낮음을 비교할 수 있습니다.',
+      text: '해당 월말의 지하수위 표고(m)를 나타냅니다. 색상으로 지점별 수위의 높고 낮음을 비교할 수 있습니다.',
     },
     range: {
       title: `${yearLabel} 전체 · 연간 변동 폭`,
@@ -46,8 +46,8 @@ export default function MapDisplayNotice({ mode = 'head', month, metadata }) {
         <p className="pt-1">해당 연도의 12개 월말 값 평균이며, 장기 평년값이 아닙니다.</p>
       </details>}
       <p className="text-[10px] text-slate-400">{hasExample
-        ? '예시 수위가 포함된 자료입니다. 월평균·현장 실측값이 아닙니다.'
-        : '제공된 월말 모의수위 기반입니다. 월평균·현장 실측값이 아닙니다.'}</p>
+        ? '예시 수위가 포함된 자료입니다.'
+        : '제공된 월말 수위 기반입니다.'}</p>
     </div>
   </div>;
 }

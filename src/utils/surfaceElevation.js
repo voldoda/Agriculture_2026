@@ -1,4 +1,4 @@
-export const SURFACE_NOTICE = 'SRTM 약30m DEM 기반 참고 지표고(2000년 취득)입니다. 모의수위와 높이 기준·수면 해석이 확인되지 않아, 표고 차이는 확정 지하수심이 아닙니다.';
+export const SURFACE_NOTICE = 'SRTM 약30m DEM 기반 참고 지표고(2000년 취득)입니다. 수위와 높이 기준·수면 해석이 확인되지 않아, 표고 차이는 확정 지하수심이 아닙니다.';
 
 export function surfaceComparison(grid, month) {
   const surface = grid?.surfaceEl, head = grid?.heads?.[month];
