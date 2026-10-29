@@ -1,0 +1,73 @@
+# Dependencies and build output
+/node_modules/
+/dist/
+/.vite/
+/coverage/
+/.cache/
+/playwright-report/
+/test-results/
+*.tsbuildinfo
+/src/data/groundwater_data.json
+
+# Local credentials (keep the configuration template)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Original inputs, backups, work files and document deliverables
+/01_Sample/
+/source-data/
+/backups/
+/scratch/
+/tmp/
+/output/
+
+# Local review artifacts; retain small reproducibility records
+/reports/*
+!/reports/contour-validation.json
+!/reports/source-validation.json
+!/reports/source-validation.md
+!/reports/surface-dem-validation.json
+!/reports/dem-review-srtm30m-response.json
+!/reports/z-dem-comparison.json
+!/reports/z-review-dem-samples.json
+!/reports/z-review-dem-spatial-samples.json
+!/reports/z-review-srtm-response.json
+!/reports/z-review-aster-response.json
+!/reports/z-review-srtm90m-spatial-response.json
+!/reports/z-review-aster30m-spatial-response.json
+!/reports/flow-arrow-review.md
+
+# Editor and operating-system files
+/.idea/
+/.vscode/
+/.agents/
+/.codex/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.log
+*.tmp
+*.bak
+__pycache__/
+*.py[cod]
+/.venv/
+
+# Local handover archives and document editing caches
+/보관/
+/delivery/
+/releases/
+/.chart-data-*/
+~$*
+.~lock.*#
+*.swp
+*.swo
+*.temp
+*.stackdump
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

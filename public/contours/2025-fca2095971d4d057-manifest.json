@@ -1,0 +1,154 @@
+{
+  "year": 2025,
+  "sourceName": "Heads_2025_Monthly_5179",
+  "sourceHashes": {
+    "shp": "3d76d5684bf59f7371fe9d5c9858849ac0746d74c1065ff7fc022ba86f5f69cc",
+    "shx": "701bd7c9b308599b2bb1402dedb4c67a97d4accfb62f36d5dcc224c39c7f496b",
+    "dbf": "6dc9b7738b7d18f22b4b7aa3c1d65dcdeab4a8c823b74ac9bad8f1d42e5c9cee",
+    "prj": "95bbd13c6f3d841fa1ddf977eacc576cd069e3001a7998ae9b75f92920445e9d",
+    "cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+  },
+  "sourceDigest": "57db0991c3f77085dd7c073aff05e933966f2c01a4c0fc588816805e7c50ebc3",
+  "sourceCells": 113076,
+  "temporalBasis": "month_end",
+  "source": "derived_model_head",
+  "generationCrs": "EPSG:5179",
+  "intervalM": 5,
+  "method": "marching_squares_linear_edges_asymptotic_decider",
+  "nodataPolicy": "skip_quad_if_any_corner_missing",
+  "smoothing": false,
+  "months": {
+    "10": {
+      "url": "/contours/2025-10-671173026099977d.geojson",
+      "sha256": "671173026099977d2b3e62d8cf4fb72204c4df636e6e8198708d22a0dceae671",
+      "lineCount": 37,
+      "minHeadM": 10.764507194342096,
+      "maxHeadM": 111.65550854755342,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14619,
+      "maxInterpolationErrorM": 0
+    },
+    "11": {
+      "url": "/contours/2025-11-cea8679bac79f99d.geojson",
+      "sha256": "cea8679bac79f99d8b3e48fc96708e7e3a3777dd02b3c082b5647a0abdd9a30f",
+      "lineCount": 44,
+      "minHeadM": 10.592860978254249,
+      "maxHeadM": 111.67932274963655,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14655,
+      "maxInterpolationErrorM": 0
+    },
+    "12": {
+      "url": "/contours/2025-12-ec687f0836e25b86.geojson",
+      "sha256": "ec687f0836e25b86d6d06a2d6ad327851cb1f309b5f798439f7b201b0716a8ba",
+      "lineCount": 41,
+      "minHeadM": 10.417362098753845,
+      "maxHeadM": 111.70802870961886,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14657,
+      "maxInterpolationErrorM": 0
+    },
+    "01": {
+      "url": "/contours/2025-01-24cf5c63e9b78501.geojson",
+      "sha256": "24cf5c63e9b785014d815fe5d0ab2d5d7b7ff5e29e455b137d1f63e4d2b05d3a",
+      "lineCount": 30,
+      "minHeadM": 11.02656487414544,
+      "maxHeadM": 110.08852293038386,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14077,
+      "maxInterpolationErrorM": 0
+    },
+    "02": {
+      "url": "/contours/2025-02-327ddb2575bb08ec.geojson",
+      "sha256": "327ddb2575bb08ec8b4ad808f6922a208572d6154ea7a98850391a6a4efe114b",
+      "lineCount": 30,
+      "minHeadM": 10.844029582147016,
+      "maxHeadM": 110.0956216940825,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14085,
+      "maxInterpolationErrorM": 0
+    },
+    "03": {
+      "url": "/contours/2025-03-c8bd68588fb51331.geojson",
+      "sha256": "c8bd68588fb513315a0685b0fe8e683bc78d6987edd20422d78c2bcdda90cd9e",
+      "lineCount": 33,
+      "minHeadM": 10.71383415597714,
+      "maxHeadM": 110.14737308207505,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14183,
+      "maxInterpolationErrorM": 0
+    },
+    "04": {
+      "url": "/contours/2025-04-5fb6b5dbed380cbb.geojson",
+      "sha256": "5fb6b5dbed380cbbe6d16530f1ca6db1867f789348d49e897694e0a4b8c6ce5e",
+      "lineCount": 31,
+      "minHeadM": 10.59592912861551,
+      "maxHeadM": 110.23194042559086,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14232,
+      "maxInterpolationErrorM": 0
+    },
+    "05": {
+      "url": "/contours/2025-05-76d0f966e8cf9a94.geojson",
+      "sha256": "76d0f966e8cf9a94879b52991e0b7a29352ca0682de262bb1cc002c0fac42c08",
+      "lineCount": 34,
+      "minHeadM": 10.463440673988346,
+      "maxHeadM": 110.32040971599947,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14332,
+      "maxInterpolationErrorM": 0
+    },
+    "06": {
+      "url": "/contours/2025-06-747ef160688d1213.geojson",
+      "sha256": "747ef160688d1213dfc51ad90d4d5dda02462de06a06643ca84a26c057311502",
+      "lineCount": 33,
+      "minHeadM": 10.469476643761565,
+      "maxHeadM": 110.5373639502092,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14442,
+      "maxInterpolationErrorM": 0
+    },
+    "07": {
+      "url": "/contours/2025-07-3b2ff53e66723313.geojson",
+      "sha256": "3b2ff53e66723313a0224e23cfcae36cf599869401dc86a366ae27d2e8be227d",
+      "lineCount": 33,
+      "minHeadM": 10.681348493538055,
+      "maxHeadM": 110.96187881441487,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14551,
+      "maxInterpolationErrorM": 0
+    },
+    "08": {
+      "url": "/contours/2025-08-ac1012560f34b4dd.geojson",
+      "sha256": "ac1012560f34b4dd2e2db3fa5e2ac0a3d06c70351bf21893a45d2027addef152",
+      "lineCount": 35,
+      "minHeadM": 10.690357546481092,
+      "maxHeadM": 111.18108605009151,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14622,
+      "maxInterpolationErrorM": 0
+    },
+    "09": {
+      "url": "/contours/2025-09-bb9b33127a6e2aff.geojson",
+      "sha256": "bb9b33127a6e2affd01c15092d0a2b223fdc8aa15d24836496a1aba3d4c89c29",
+      "lineCount": 38,
+      "minHeadM": 10.765767765053415,
+      "maxHeadM": 111.45559115231315,
+      "validCells": 113076,
+      "validQuads": 111916,
+      "segmentCount": 14686,
+      "maxInterpolationErrorM": 0
+    }
+  }
+}
