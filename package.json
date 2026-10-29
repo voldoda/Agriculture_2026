@@ -11,7 +11,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "generate:contours": "node scripts/generate-contours.mjs",
-    "import:surface": "node scripts/import-srtm-surface.mjs"
+    "import:surface": "node scripts/import-srtm-surface.mjs",
+    "publish:repos": "node scripts/publish-repositories.mjs"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.3",
@@ -34,5 +35,15 @@
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
     "vite": "^5.4.10"
-  }
+  },
+  "description": "유구천 유역 2025년 월말 지하수위 지도·시계열·GIS 내보내기 웹 서비스",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WeSmart-co-op/Agriculture.git"
+  },
+  "homepage": "https://github.com/WeSmart-co-op/Agriculture#readme",
+  "bugs": {
+    "url": "https://github.com/WeSmart-co-op/Agriculture/issues"
+  },
+  "license": "UNLICENSED"
 }

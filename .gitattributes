@@ -8,3 +8,12 @@
 *.yml text eol=lf
 *.png binary
 /data/groundwater-2025/*.part-* binary
+*.doc binary
+*.docx binary
+*.ppt binary
+*.pptx binary
+*.xls binary
+*.xlsx binary
+*.pdf binary
+*.svg text eol=lf
+VERSION text eol=lf

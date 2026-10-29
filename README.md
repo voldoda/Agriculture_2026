@@ -1,8 +1,25 @@
-# Agriculture · 유구천 유역 지하수 모니터링
+# Agriculture 2026 · 유구천 유역 지하수 모니터링
 
 2025년 월말 지하수위 자료를 지도와 그래프로 비교하는 웹 시작품입니다. 약 50m 원본 격자 113,076개를 표시하고, 월별 수위 변화·등수두선·수위 저하 지표를 조회하며 GIS/CAD 파일을 내보낼 수 있습니다.
 
-> 산정 방식은 MODFLOW 6 계산 결과입니다. 현장 실측값이나 월평균 수위가 아니며, 수위 저하 단계와 경보는 검증 전 참고 기준입니다. 공식 가뭄 판정 또는 운영 경보 시스템으로 취급하지 않습니다.
+현재 정식 버전은 **v1.0.0**입니다. `package.json`, `package-lock.json`, `VERSION`을 같은 버전으로 관리하고, 배포 기준은 Git 태그 `v1.0.0`으로 식별합니다. 변경 이력은 [CHANGELOG.md](CHANGELOG.md)를 참고합니다.
+
+## 저장소 기준과 함께 업데이트하기
+
+[WeSmart-co-op/Agriculture](https://github.com/WeSmart-co-op/Agriculture)를 기준 저장소로 사용하고, [voldoda/Agriculture_2026](https://github.com/voldoda/Agriculture_2026)에 같은 소스와 문서를 함께 반영합니다. 두 저장소의 `main`은 동일한 커밋으로 관리합니다.
+
+새 작업 폴더에서는 [동기화 설정과 게시 절차](docs/REPOSITORY_SYNC.md)를 먼저 적용합니다. 설정 후 `npm run publish:repos -- --dry-run`으로 양쪽을 점검하고, `npm run publish:repos`로 두 저장소에 전송합니다. 현재 `v1.0.0` 태그와 최초 검증 기록은 보존하고, 이후 저장소 관리 변경은 `main` 이력에 추가합니다.
+
+## 시연 자료와 검증 기록
+
+- [최종 시연대본 PDF 6쪽](docs/demo/최종_시연대본.pdf) · [편집 원본](docs/demo/최종_시연대본.md)
+- [최종 조작표 PDF 2쪽](docs/demo/최종_조작표.pdf) · [편집 원본](docs/demo/최종_조작표.md)
+- [시연 준비와 문서 수정 방법](docs/demo/README.md)
+- [v1.0.0 등록 전 확인 결과](docs/VALIDATION.md)
+
+시연은 본 진행 18분과 여유 2분으로 구성했습니다. 시간은 권장 배정이며 실제 음성 발표 시간을 실측한 결과가 아닙니다.
+
+산정 방식은 MODFLOW 6 계산 결과입니다. 수위 저하 단계와 변동 경보는 참고 기준이며 공식 가뭄 판정이나 실시간 운영 경보가 아닙니다.
 
 ## 주요 기능
 
@@ -32,15 +49,16 @@
 | 데이터 가공·테스트 | Node.js, 내장 테스트 실행기 | 자료 변환·등수두선 생성·검증 |
 | 백엔드·DB | 별도 구현 없음 | JSON/GeoJSON 파일을 브라우저에서 읽음 |
 
-설치 버전은 `package-lock.json`에 고정합니다. Node.js 22 이상을 권장하며 `.nvmrc`는 22를 지정합니다.
+React 18.3.1, Leaflet 1.9.4, Recharts 2.15.4, Vite 5.4.21을 사용하는 기준 버전이며, 정확한 직접·간접 의존성은 `package-lock.json`에 고정합니다. Node.js 22 이상을 권장하며 `.nvmrc`는 22를 지정합니다.
 
 ## 빠른 시작
 
-Git, Node.js 22 이상과 npm이 필요합니다. 비공개 저장소이므로 접근 권한이 있는 GitHub 계정으로 인증해야 합니다.
+Git, Node.js 22 이상과 npm이 필요합니다. `.nvmrc`와 GitHub Actions는 Node.js 22를 사용합니다. 저장소에는 실행에 필요한 수위 자료와 월별 등수두선이 포함됩니다.
 
 ```sh
 git clone https://github.com/WeSmart-co-op/Agriculture.git
 cd Agriculture
+git checkout v1.0.0
 npm ci
 ```
 
@@ -91,6 +109,8 @@ npm run preview -- --host 127.0.0.1 --port 4173 --strictPort
 | `npm run preview` | 빌드 결과를 로컬에서 확인 |
 | `npm run generate:contours` | 현재 수위 자료로 월별 등수두선 재생성 |
 | `npm run import:surface` | 준비한 SRTM 원본 DEM을 격자에 반영 |
+| `npm run publish:repos -- --dry-run` | 두 저장소의 주소·이력·태그를 검사하고 시험 전송 |
+| `npm run publish:repos` | main과 주석 태그를 두 저장소에 전송하고 결과 대조 |
 | `node scripts/import-2025.mjs` | 원본 2025년 SHP/DBF를 가져옴 |
 | `node scripts/validate-source.mjs` | 원본 SHP/DBF와 현재 수위 자료 대조 |
 
@@ -168,10 +188,12 @@ public/
 scripts/           원자료 가져오기·DEM 반영·등수두선 생성
 tests/             Node.js 자동 검증
 reports/           선별한 검증 기록과 DEM 표본 대조 자료
+docs/demo/         최종 시연대본·조작표 PDF 및 편집 가능한 Markdown
+docs/VALIDATION.md 등록 전 확인 결과
 .github/workflows/ 테스트·빌드 자동 검증
 ```
 
-`node_modules/`, `dist/`, `.env`, 복원된 대용량 JSON, 원본 `01_Sample/`·`source-data/`, 백업·임시 파일·화면 캡처·PPT 등 산출물은 저장소에서 제외합니다. 복원용 데이터 묶음·등수두선·이미지와 테스트에 필요한 검증 기록은 포함합니다.
+`node_modules/`, `dist/`, `.env`, 복원된 대용량 JSON, 원본 `01_Sample/`·`source-data/`, 백업·임시 파일과 로컬 납품 패키지는 저장소에서 제외합니다. `docs/`에는 프로젝트와 함께 관리하는 확정 문서를 둡니다. 자료의 이용 조건은 아래 권리 안내를 따릅니다. 복원용 데이터 묶음·등수두선·이미지와 테스트에 필요한 검증 기록은 포함합니다.
 
 ## 원자료 갱신
 
@@ -186,6 +208,8 @@ $env:GROUNDWATER_SOURCE_DIR = '원본_SHP가_있는_폴더'
 node scripts/import-2025.mjs
 npm run generate:contours
 node scripts/validate-source.mjs
+node scripts/package-data.mjs
+npm run prepare:data -- --verify
 npm test
 ```
 

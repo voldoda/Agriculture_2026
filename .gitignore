@@ -56,3 +56,18 @@ Desktop.ini
 __pycache__/
 *.py[cod]
 /.venv/
+
+# Local handover archives and document editing caches
+/보관/
+/delivery/
+/releases/
+/.chart-data-*/
+~$*
+.~lock.*#
+*.swp
+*.swo
+*.temp
+*.stackdump
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
