@@ -2,6 +2,8 @@
 
 Agriculture 2026 v1.0.0의 유구천 유역 지하수 모니터링 화면을 기준으로 작성했습니다.
 
+v1.0.1은 보조 도구를 Rust로 전환한 버전으로, 화면 조작이 같아 이 문서를 함께 사용할 수 있습니다. 기존 PDF와 Markdown 본문은 유지했습니다.
+
 | 문서 | 읽기·인쇄용 | 편집 원본 |
 | --- | --- | --- |
 | 최종 시연대본 | [PDF 6쪽](최종_시연대본.pdf) | [Markdown](최종_시연대본.md) |
@@ -13,17 +15,18 @@ Agriculture 2026 v1.0.0의 유구천 유역 지하수 모니터링 화면을 기
 
 ## 수정과 PDF 재생성
 
-Markdown을 수정한 뒤 아래 선택 도구로 PDF를 다시 생성합니다. 앱 실행에는 Python이나 PDF 생성 도구가 필요하지 않습니다.
+Markdown을 수정한 뒤 Rust 보조 도구로 PDF를 다시 생성합니다. 도구를 빌드하려면 Rust가 필요하며 앱 실행에는 필요하지 않습니다.
 
 ```sh
-python -m pip install -r docs/demo/requirements.txt
-python scripts/build-demo-docs.py
+npm run docs:demo
 ```
 
 Windows에서는 설치된 맑은 고딕을 기본 사용합니다. 다른 환경에서는 임베딩이 허용된 한글 TrueType 글꼴을 준비해 지정합니다. 글꼴 파일 자체는 저장소에 포함하지 않습니다.
 
 ```sh
-python scripts/build-demo-docs.py --font /path/Korean-Regular.ttf --bold-font /path/Korean-Bold.ttf
+npm run docs:demo -- --font /path/Korean-Regular.ttf --bold-font /path/Korean-Bold.ttf
 ```
 
 `<!-- pagebreak -->`는 페이지 구분입니다. PDF 생성 후 페이지 수, 표 잘림과 한글 표시를 다시 확인합니다. `--reset-source`는 Markdown을 초기 대본으로 되돌리므로 기존 편집을 보존하려면 사용하지 않습니다.
+
+자세한 환경과 검증 범위는 [Rust 보조 도구 안내](../RUST_TOOLS.md)를 참고합니다.

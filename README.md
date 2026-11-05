@@ -2,13 +2,13 @@
 
 2025년 월말 지하수위 자료를 지도와 그래프로 비교하는 웹 시작품입니다. 약 50m 원본 격자 113,076개를 표시하고, 월별 수위 변화·등수두선·수위 저하 지표를 조회하며 GIS/CAD 파일을 내보낼 수 있습니다.
 
-현재 정식 버전은 **v1.0.0**입니다. `package.json`, `package-lock.json`, `VERSION`을 같은 버전으로 관리하고, 배포 기준은 Git 태그 `v1.0.0`으로 식별합니다. 변경 이력은 [CHANGELOG.md](CHANGELOG.md)를 참고합니다.
+현재 정식 버전은 **v1.0.1**입니다. `package.json`, `package-lock.json`, `VERSION`을 같은 버전으로 관리하고, 배포 기준은 Git 태그 `v1.0.1`로 식별합니다. 변경 이력은 [CHANGELOG.md](CHANGELOG.md)를 참고합니다.
 
 ## 저장소 기준과 함께 업데이트하기
 
 [WeSmart-co-op/Agriculture](https://github.com/WeSmart-co-op/Agriculture)를 기준 저장소로 사용하고, [voldoda/Agriculture_2026](https://github.com/voldoda/Agriculture_2026)에 같은 소스와 문서를 함께 반영합니다. 두 저장소의 `main`은 동일한 커밋으로 관리합니다.
 
-새 작업 폴더에서는 [동기화 설정과 게시 절차](docs/REPOSITORY_SYNC.md)를 먼저 적용합니다. 설정 후 `npm run publish:repos -- --dry-run`으로 양쪽을 점검하고, `npm run publish:repos`로 두 저장소에 전송합니다. 현재 `v1.0.0` 태그와 최초 검증 기록은 보존하고, 이후 저장소 관리 변경은 `main` 이력에 추가합니다.
+새 작업 폴더에서는 [동기화 설정과 게시 절차](docs/REPOSITORY_SYNC.md)를 먼저 적용합니다. 설정 후 `npm run publish:repos -- --dry-run`으로 양쪽을 점검하고, `npm run publish:repos`로 두 저장소에 전송합니다. 기존 `v1.0.0` 태그와 최초 검증 기록을 보존하며, Rust 보조 도구 전환본은 `v1.0.1`에 반영합니다.
 
 ## 시연 자료와 검증 기록
 
@@ -58,7 +58,7 @@ Git, Node.js 22 이상과 npm이 필요합니다. `.nvmrc`와 GitHub Actions는 
 ```sh
 git clone https://github.com/WeSmart-co-op/Agriculture.git
 cd Agriculture
-git checkout v1.0.0
+git checkout v1.0.1
 npm ci
 ```
 
@@ -111,6 +111,10 @@ npm run preview -- --host 127.0.0.1 --port 4173 --strictPort
 | `npm run import:surface` | 준비한 SRTM 원본 DEM을 격자에 반영 |
 | `npm run publish:repos -- --dry-run` | 두 저장소의 주소·이력·태그를 검사하고 시험 전송 |
 | `npm run publish:repos` | main과 주석 태그를 두 저장소에 전송하고 결과 대조 |
+| `npm run tools:build` | Rust 보조 도구 실행 파일 빌드 |
+| `npm run tools:test` | Rust 보조 도구 테스트 |
+| `npm run docs:demo` | Markdown 시연 문서를 한글 PDF로 생성 |
+| `npm run sample:generate` | 과거 5~9월 SHP에서 별도 예시 JSON 생성 |
 | `node scripts/import-2025.mjs` | 원본 2025년 SHP/DBF를 가져옴 |
 | `node scripts/validate-source.mjs` | 원본 SHP/DBF와 현재 수위 자료 대조 |
 
@@ -186,6 +190,7 @@ public/
   contours/        월별 등수두선과 manifest
   validation/      원자료 대조 상태
 scripts/           원자료 가져오기·DEM 반영·등수두선 생성
+tools/             Rust 예시 데이터·시연 PDF 생성 도구
 tests/             Node.js 자동 검증
 reports/           선별한 검증 기록과 DEM 표본 대조 자료
 docs/demo/         최종 시연대본·조작표 PDF 및 편집 가능한 Markdown
@@ -226,7 +231,7 @@ npm test
 
 DEM 반영 스크립트는 기존 수위·원본 좌표를 유지하고 지표고 참고값만 갱신합니다. 원본 대조, DEM 표본 비교와 물리적 타당성 검증은 구분해야 합니다.
 
-`process_sample_data.py`는 과거 예시 자료 생성용입니다. 현재 2025년 데이터 갱신에는 사용하지 않습니다. 과거 검토 스크립트는 작성 당시 자료 해시와 원본·표본 파일을 요구할 수 있습니다.
+과거 예시 데이터 생성기와 시연 PDF 작성기는 Rust로 전환했습니다. [Rust 보조 도구 안내](docs/RUST_TOOLS.md)에 실행 방법과 Python 결과 대조 기록이 있습니다. `npm run sample:generate`는 과거 예시 생성용이며 현재 2025년 데이터 갱신에는 사용하지 않습니다. 과거 검토 스크립트는 작성 당시 자료 해시와 원본·표본 파일을 요구할 수 있습니다.
 
 ## 배포와 현재 한계
 

@@ -17,3 +17,6 @@
 *.pdf binary
 *.svg text eol=lf
 VERSION text eol=lf
+*.rs text eol=lf
+*.toml text eol=lf
+Cargo.lock text eol=lf

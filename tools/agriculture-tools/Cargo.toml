@@ -1,0 +1,25 @@
+[package]
+name = "agriculture-tools"
+version = "1.0.1"
+edition = "2021"
+publish = false
+license = "UNLICENSED"
+description = "Offline legacy sample and Korean demo PDF tools for Agriculture"
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "4.5", features = ["derive", "env"] }
+printpdf = { version = "=0.8.2", default-features = false }
+proj4rs = { version = "=0.3.0", default-features = false }
+serde_json = { version = "1.0", features = ["preserve_order"] }
+shapefile = "=0.7.0"
+ttf-parser = "0.25"
+unicode-linebreak = "=0.1.5"
+
+[[bin]]
+name = "process-sample-data"
+path = "src/bin/process-sample-data.rs"
+
+[[bin]]
+name = "build-demo-docs"
+path = "src/bin/build-demo-docs.rs"

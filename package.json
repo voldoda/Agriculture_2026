@@ -1,7 +1,7 @@
 {
   "name": "groundwater-gis-dashboard",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "postinstall": "node scripts/prepare-data.mjs",
@@ -12,7 +12,11 @@
     "preview": "vite preview",
     "generate:contours": "node scripts/generate-contours.mjs",
     "import:surface": "node scripts/import-srtm-surface.mjs",
-    "publish:repos": "node scripts/publish-repositories.mjs"
+    "publish:repos": "node scripts/publish-repositories.mjs",
+    "tools:build": "node scripts/run-rust-tool.mjs build",
+    "tools:test": "node scripts/run-rust-tool.mjs test",
+    "docs:demo": "node scripts/run-rust-tool.mjs docs",
+    "sample:generate": "node scripts/run-rust-tool.mjs sample"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.3",
