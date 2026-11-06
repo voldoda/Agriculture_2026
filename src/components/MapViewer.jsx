@@ -10,7 +10,7 @@ import { surfaceComparison } from '../utils/surfaceElevation';
 import { calculateGridDrought } from '../utils/droughtUtils';
 import { declineCaption } from '../utils/declineDisplay';
 import { gridMetricValue, metricText, metricCaption, METRIC_LABELS } from '../utils/headDisplay';
-import { watershedBounds, unobscuredWatershedPadding, createWatershedViewport } from '../utils/watershedViewport';
+import { watershedBounds, unobscuredWatershedPadding, createWatershedViewport, selectionPadding } from '../utils/watershedViewport';
 import { 
   Maximize2, 
   RotateCcw, 
@@ -43,6 +43,9 @@ export default function MapViewer({
   const declineCaptionRef = useRef(null);
   const coordinateBarRef = useRef(null);
   const navigationRef = useRef(null);
+  const selectionFocusRef = useRef(null);
+  const selectedGridRef = useRef(selectedGrid);
+  selectedGridRef.current = selectedGrid;
   const bounds = useMemo(() => watershedBounds(dataset), [dataset]);
   const boundsRef = useRef(bounds);
   boundsRef.current = bounds;
@@ -144,17 +147,19 @@ export default function MapViewer({
         const overlays = [headCaptionRef.current, declineCaptionRef.current, coordinateBarRef.current,
           document.querySelector('[data-map-overlay="bottom"]')];
         let bottomInset = 0;
+        let topInset = 0;
         for (const overlay of overlays) {
           if (!overlay) continue;
           const rect = overlay.getBoundingClientRect();
           if (rect.width > 0 && rect.height > 0 && rect.bottom > mapRect.top && rect.top < mapRect.bottom) {
-            bottomInset = Math.max(bottomInset, mapRect.bottom - Math.max(mapRect.top, rect.top));
+            if (rect.top < mapRect.top + mapRect.height / 2) topInset = Math.max(topInset, rect.bottom - mapRect.top);
+            else bottomInset = Math.max(bottomInset, mapRect.bottom - Math.max(mapRect.top, rect.top));
           }
         }
         const navigation = navigationRef.current?.getBoundingClientRect();
         const rightInset = navigation?.width > 0 ? Math.max(0, mapRect.right - navigation.left) : 0;
         return unobscuredWatershedPadding(map, boundsRef.current, size, {
-          bottomInset, rightInset,
+          bottomInset, rightInset, topInset,
           navigationBottom: navigation?.height > 0 ? Math.max(0, navigation.bottom - mapRect.top) : 0,
         });
       },
@@ -172,7 +177,12 @@ export default function MapViewer({
     const resizeObserver = new ResizeObserver(() => {
       observeBottomSheet();
       viewport.resize();
+      cancelAnimationFrame(selectionResizeFrame);
+      selectionResizeFrame = requestAnimationFrame(() => {
+        if (selectedGridRef.current && window.innerWidth < 768) selectionFocusRef.current?.(false);
+      });
     });
+    let selectionResizeFrame = 0;
     resizeObserver.observe(mapContainerRef.current);
     observeBottomSheet();
     viewport.reset();
@@ -182,6 +192,7 @@ export default function MapViewer({
       viewport.dispose();
       viewportRef.current = null;
       cancelAnimationFrame(coordinateFrame);
+      cancelAnimationFrame(selectionResizeFrame);
       map.remove();
       mapInstanceRef.current = null;
     };
@@ -267,17 +278,20 @@ export default function MapViewer({
 
     group.clearLayers();
     if (!layers.drainage) return;
+    const renderer = L.svg({ pane: 'drainagePane' });
+    const patternId = `management-hatch-${L.Util.stamp(map)}`;
 
     dataset.drainagePolygons.forEach((poly) => {
       const latlngs = poly.coordinates.map(pt => [pt[1], pt[0]]);
       
       const polygon = L.polygon(latlngs, {
+        renderer,
         pane: 'drainagePane',
         color: '#F59E0B',
         weight: 2.2,
         dashArray: '6, 3',
-        fillColor: '#D97706',
-        fillOpacity: 0.25,
+        fillColor: `url(#${patternId})`,
+        fillOpacity: 1,
         lineCap: 'round'
       });
 
@@ -293,7 +307,22 @@ export default function MapViewer({
       });
 
       polygon.addTo(group);
+      const svg = polygon.getElement()?.ownerSVGElement;
+      if (svg && !svg.querySelector(`#${patternId}`)) {
+        const node = (tag, attrs) => {
+          const element = document.createElementNS('http://www.w3.org/2000/svg', tag);
+          for (const [name, value] of Object.entries(attrs)) element.setAttribute(name, value);
+          return element;
+        };
+        const defs = node('defs', {});
+        const pattern = node('pattern', { id: patternId, patternUnits: 'userSpaceOnUse', width: 8, height: 8 });
+        pattern.append(node('rect', { width: 8, height: 8, fill: '#D97706', 'fill-opacity': 0.16 }));
+        pattern.append(node('path', { d: 'M-2,2 L2,-2 M0,8 L8,0 M6,10 L10,6', stroke: '#F59E0B', 'stroke-width': 1.5, 'stroke-opacity': 0.8 }));
+        defs.append(pattern);
+        svg.prepend(defs);
+      }
     });
+    return () => { group.clearLayers(); map.removeLayer(renderer); };
   }, [dataset, layers.drainage]);
 
   // Render Observation Wells
@@ -336,12 +365,30 @@ export default function MapViewer({
     });
   }, [dataset, layers.wells]);
 
+  selectionFocusRef.current = animate => {
+    const map = mapInstanceRef.current, grid = selectedGridRef.current;
+    if (!map || !grid) return;
+    const rect = mapContainerRef.current.getBoundingClientRect();
+    const navigation = navigationRef.current?.getBoundingClientRect();
+    const badgeHeight = selectionBadgeRef.current?.getElement()?.querySelector('.selection-floating-badge')?.getBoundingClientRect().height;
+    const caption = (headCaptionRef.current || declineCaptionRef.current)?.getBoundingClientRect();
+    const padding = selectionPadding(map.getSize(), {
+      rightInset: navigation?.width ? rect.right - navigation.left : 0,
+      badgeHeight: badgeHeight || 64,
+      topInset: caption?.width && caption.top < rect.top + rect.height / 2 ? caption.bottom - rect.top : 0,
+    });
+    if (animate) map.flyToBounds([[grid.lat, grid.lon], [grid.lat, grid.lon]], {
+      ...padding, maxZoom: Math.max(map.getZoom(), 14), duration: 0.8,
+    });
+    else map.panInside([grid.lat, grid.lon], { ...padding, animate: false });
+  };
+
   // Move only when the selected cell changes, not on every timeline tick.
   useEffect(() => {
     const map = mapInstanceRef.current;
     if (map && selectedGrid) {
       viewportRef.current?.preserve();
-      map.flyTo([selectedGrid.lat, selectedGrid.lon], Math.max(map.getZoom(), 14), { duration: 0.8 });
+      selectionFocusRef.current(true);
     }
     else if (map) map.stop(); // Cancel an unfinished selection flight without resetting the view.
   }, [selectedGrid]);
@@ -418,13 +465,13 @@ export default function MapViewer({
         html: `
           <div class="relative flex flex-col items-center -translate-x-1/2 -translate-y-full mb-2 pointer-events-none select-none z-[1000] selection-floating-badge">
             <!-- Capsule Badge Body -->
-            <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/95 border-2 border-amber-400 shadow-[0_4px_20px_rgba(0,0,0,0.8)] backdrop-blur text-[11px] font-mono whitespace-nowrap">
-              <span class="w-2 h-2 rounded-full bg-red-500 animate-ping inline-block"></span>
+            <div class="grid grid-cols-[1fr_auto] md:flex items-center gap-1.5 px-3 py-1 rounded-2xl md:rounded-full bg-slate-950/95 border-2 border-amber-400 shadow-[0_4px_20px_rgba(0,0,0,0.8)] backdrop-blur text-[11px] font-mono whitespace-nowrap w-[calc(100vw-10rem)] md:w-auto">
+              <span class="w-2 h-2 rounded-full bg-red-500 animate-ping hidden md:inline-block"></span>
               <span class="font-extrabold text-white tracking-wide">${selectedGrid.id}</span>
-              <span class="text-slate-400">|</span>
-              <span class="selection-value text-amber-300 font-extrabold"></span>
+              <span class="text-slate-400 hidden md:inline">|</span>
+              <span class="selection-value col-span-2 row-start-2 min-w-0 whitespace-normal md:whitespace-nowrap text-amber-300 font-extrabold"></span>
               <button type="button" aria-label="지도에서 지점 선택 해제" title="지점 선택 해제 (Esc)"
-                class="selection-clear-button pointer-events-auto ml-1 rounded-full w-8 h-8 flex items-center justify-center text-lg text-amber-300 hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400">&times;</button>
+                class="selection-clear-button col-start-2 row-start-1 pointer-events-auto md:ml-1 rounded-full w-8 h-8 flex items-center justify-center text-lg text-amber-300 hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400">&times;</button>
             </div>
             <!-- Downward Pointer Arrow -->
             <div class="w-0 h-0 border-x-[6px] border-x-transparent border-t-[8px] border-t-amber-400 -mt-[1px] drop-shadow-md"></div>
@@ -476,6 +523,7 @@ export default function MapViewer({
         const metric = layers.gridMetric ?? 'head';
         value.textContent = `${METRIC_LABELS[metric]} ${metricText(gridMetricValue(selectedGrid, selectedMonth, metric), metric)}`;
       }
+      if (window.innerWidth < 768) selectionFocusRef.current?.(false);
     }
   }, [selectedGrid, gridShape, selectedMonth, layers.gridMetric, layers.heatmap, layers.declineMetric]);
 
@@ -485,17 +533,17 @@ export default function MapViewer({
   };
 
   return (
-    <div className="map-shell relative flex-1 h-full overflow-hidden"
+    <div className="map-shell relative flex-1 min-h-0 w-full overflow-hidden"
       data-basemap={basemapType} data-basemap-muted={basemapType === 'streets' && basemapMuted}>
       {/* Keep className constant: Leaflet adds its own required container classes.
           React must not replace those classes when display settings change. */}
       {contourError && <div role="alert" className="absolute left-3 top-3 z-[600] rounded border border-amber-300 bg-amber-50 p-3 text-xs text-amber-900">등수두선을 표시하지 못했습니다: {contourError}<br />레이어를 껐다 켜면 다시 요청합니다.</div>}
       <div ref={mapContainerRef} className="w-full h-full z-10" />
-      {layers.grid && <div ref={headCaptionRef} role="status" className="absolute bottom-14 left-3 z-20 max-w-[calc(100%-2rem)] bg-panel/90 border border-panelBorder rounded-lg px-3 py-2 shadow text-[11px] text-slate-200">
+      {layers.grid && <div ref={headCaptionRef} role="status" className="absolute top-3 md:top-auto md:bottom-14 left-3 z-20 max-w-[calc(100%-9rem)] md:max-w-[calc(100%-2rem)] bg-panel/90 border border-panelBorder rounded-lg px-3 py-2 shadow text-[11px] text-slate-200">
         <strong>{METRIC_LABELS[layers.gridMetric ?? 'head']}</strong>
         <span className="ml-2">{metricCaption(selectedMonth, layers.gridMetric, metadata.year)}</span>
       </div>}
-      {layers.heatmap && !layers.grid && <div ref={declineCaptionRef} role="status" aria-label="표시 중인 수위 저하 지도" className="absolute bottom-14 left-3 z-20 max-w-[calc(100%-2rem)] bg-panel/90 border border-panelBorder rounded-lg px-3 py-2 shadow text-[11px] text-slate-200">
+      {layers.heatmap && !layers.grid && <div ref={declineCaptionRef} role="status" aria-label="표시 중인 수위 저하 지도" className="absolute top-3 md:top-auto md:bottom-14 left-3 z-20 max-w-[calc(100%-9rem)] md:max-w-[calc(100%-2rem)] bg-panel/90 border border-panelBorder rounded-lg px-3 py-2 shadow text-[11px] text-slate-200">
         {declineCaption(selectedMonth, layers, metadata.year)}
       </div>}
 

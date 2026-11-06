@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { 
   X, 
   Download, 
@@ -12,6 +12,7 @@ import {
   Info
 } from 'lucide-react';
 import { DATA_NOTICE } from '../utils/dataProvenance';
+import { containModalFocus } from '../utils/modalFocus';
 
 
 export default function ExportModal({ isOpen, onClose, dataset, selectedMonth, contourIntervalM = 10 }) {
@@ -26,6 +27,17 @@ export default function ExportModal({ isOpen, onClose, dataset, selectedMonth, c
   const [range, setRange] = useState('current'); // 'current', 'all'
   const [isExporting, setIsExporting] = useState(false);
   const [exportError, setExportError] = useState('');
+  const dialogRef = useRef(null);
+  const closeRef = useRef(null);
+  const latest = useRef(null);
+  latest.current = { onClose, isExporting };
+  useLayoutEffect(() => {
+    if (!isOpen) return;
+    return containModalFocus(dialogRef.current, {
+      initialFocus: closeRef.current,
+      onEscape: () => { if (!latest.current.isExporting) latest.current.onClose(); },
+    });
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -60,7 +72,7 @@ export default function ExportModal({ isOpen, onClose, dataset, selectedMonth, c
   };
 
   return (
-    <div role="dialog" aria-modal="true" aria-label="데이터 내보내기" className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 select-none">
+    <div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label="데이터 내보내기" className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 select-none">
       <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-lg max-h-[90dvh] overflow-y-auto shadow-2xl animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
@@ -74,6 +86,7 @@ export default function ExportModal({ isOpen, onClose, dataset, selectedMonth, c
             </div>
           </div>
           <button
+            ref={closeRef}
             aria-label="내보내기 닫기"
             onClick={onClose} disabled={isExporting}
             className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"

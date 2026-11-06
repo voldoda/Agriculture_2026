@@ -154,7 +154,7 @@ export default function App() {
       />
 
       {/* 2. Main Content Area (Adaptive 3-Tier Layout) */}
-      <div className="flex-1 flex overflow-hidden relative">
+      <div className="flex-1 min-h-0 flex flex-col md:flex-row overflow-hidden relative">
         {/* Desktop Static Left Sidebar */}
         {isDesktop && (
           <LeftSidebar

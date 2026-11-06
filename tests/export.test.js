@@ -57,6 +57,7 @@ test('SHP 5186 transforms coordinates and matches its PRJ', async () => {
   close(shp.getFloat64(120, true), y, 1e-6);
   assert.ok(Math.abs(x - grid.x) > 700000);
   assert.match(await zip.file(Object.keys(zip.files).find(n => n.endsWith('.prj'))).async('text'), /Central_Belt_2010/);
+  assert.match(await zip.file(Object.keys(zip.files).find(n => n.endsWith('.prj'))).async('text'), /AUTHORITY\["EPSG","5186"\]/);
 });
 
 test('polygon SHP preserves displayed footprint in every CRS, closed rings and binary sizes', async () => {

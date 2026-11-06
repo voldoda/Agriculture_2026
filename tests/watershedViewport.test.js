@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { watershedBounds, watershedPadding, unobscuredWatershedPadding, createWatershedViewport } from '../src/utils/watershedViewport.js';
+import { watershedBounds, watershedPadding, unobscuredWatershedPadding, createWatershedViewport, selectionPadding } from '../src/utils/watershedViewport.js';
 
 test('fit extent includes all original cell edges and ignores unrelated example objects', () => {
   const data = { grids: [
@@ -42,6 +42,35 @@ test('phones use the larger unobscured area below controls, while wide screens a
   assert.deepEqual(halfSheet, { paddingTopLeft: [16, 16], paddingBottomRight: [118, 484] });
   const wide = choose({ x: 1856, y: 1376 }, 90);
   assert.deepEqual(wide, { paddingTopLeft: [24, 24], paddingBottomRight: [126, 114] });
+});
+
+test('selected point and badge fit above a mobile panel in peek, half and expanded layouts', () => {
+  // The panel is now a sibling, so the actual Leaflet size is the visible map.
+  for (const height of [708, 349, 168]) {
+    const size = { x: 390, y: height };
+    const padding = selectionPadding(size, { topInset: 48, rightInset: 126, badgeHeight: 64 });
+    const x = (padding.paddingTopLeft[0] + size.x - padding.paddingBottomRight[0]) / 2;
+    const y = (padding.paddingTopLeft[1] + size.y - padding.paddingBottomRight[1]) / 2;
+    assert.ok(y - 64 >= 48, 'badge stays below the map caption');
+    assert.ok(y < size.y - 8, 'point stays above the panel');
+    assert.ok(x - 115 >= 0 && x + 115 <= size.x - 126, 'mobile badge avoids navigation');
+  }
+});
+
+test('top captions reserve map fitting space without being mistaken for a bottom overlay', () => {
+  const size = { x: 390, y: 349 };
+  const padding = unobscuredWatershedPadding({ getBoundsZoom: () => 1 }, [[36, 126], [37, 127]], size,
+    { topInset: 48, rightInset: 126, navigationBottom: 180 });
+  assert.equal(padding.paddingTopLeft[1], 64);
+  assert.equal(padding.paddingBottomRight[1], 16);
+});
+
+test('narrow-phone multiline captions and badges retain separate space in the expanded layout', () => {
+  const size = { x: 320, y: 216 };
+  const padding = selectionPadding(size, { topInset: 80, rightInset: 126, badgeHeight: 96 });
+  const y = (padding.paddingTopLeft[1] + size.y - padding.paddingBottomRight[1]) / 2;
+  assert.ok(y - 96 >= 80);
+  assert.ok(y < size.y - 8);
 });
 
 function setup() {

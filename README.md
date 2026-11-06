@@ -2,13 +2,13 @@
 
 2025년 월말 지하수위 자료를 지도와 그래프로 비교하는 웹 시작품입니다. 약 50m 원본 격자 113,076개를 표시하고, 월별 수위 변화·등수두선·수위 저하 지표를 조회하며 GIS/CAD 파일을 내보낼 수 있습니다.
 
-현재 정식 버전은 **v1.0.1**입니다. `package.json`, `package-lock.json`, `VERSION`을 같은 버전으로 관리하고, 배포 기준은 Git 태그 `v1.0.1`로 식별합니다. 변경 이력은 [CHANGELOG.md](CHANGELOG.md)를 참고합니다.
+현재 정식 버전은 **v1.0.2**입니다. `package.json`, `package-lock.json`, `VERSION`을 같은 버전으로 관리하고, 배포 기준은 Git 태그 `v1.0.2`로 식별합니다. 변경 이력은 [CHANGELOG.md](CHANGELOG.md)를 참고합니다.
 
 ## 저장소 기준과 함께 업데이트하기
 
 [WeSmart-co-op/Agriculture](https://github.com/WeSmart-co-op/Agriculture)를 기준 저장소로 사용하고, [voldoda/Agriculture_2026](https://github.com/voldoda/Agriculture_2026)에 같은 소스와 문서를 함께 반영합니다. 두 저장소의 `main`은 동일한 커밋으로 관리합니다.
 
-새 작업 폴더에서는 [동기화 설정과 게시 절차](docs/REPOSITORY_SYNC.md)를 먼저 적용합니다. 설정 후 `npm run publish:repos -- --dry-run`으로 양쪽을 점검하고, `npm run publish:repos`로 두 저장소에 전송합니다. 기존 `v1.0.0` 태그와 최초 검증 기록을 보존하며, Rust 보조 도구 전환본은 `v1.0.1`에 반영합니다.
+새 작업 폴더에서는 [동기화 설정과 게시 절차](docs/REPOSITORY_SYNC.md)를 먼저 적용합니다. 설정 후 `npm run publish:repos -- --dry-run`으로 양쪽을 점검하고, `npm run publish:repos`로 두 저장소에 전송합니다. 기존 태그와 검증 기록을 보존하며, Rust 보조 도구 전환본은 `v1.0.1`, 모바일·내보내기 조작 및 GIS 호환성 개선은 `v1.0.2`에 반영합니다.
 
 ## 시연 자료와 검증 기록
 
@@ -58,7 +58,7 @@ Git, Node.js 22 이상과 npm이 필요합니다. `.nvmrc`와 GitHub Actions는 
 ```sh
 git clone https://github.com/WeSmart-co-op/Agriculture.git
 cd Agriculture
-git checkout v1.0.1
+git checkout v1.0.2
 npm ci
 ```
 

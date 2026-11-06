@@ -33,7 +33,7 @@ export default function MobileBottomSheet({
   isAnnualRange = false,
   dataset
 }) {
-  // Sheet state: 'peek' (minimized), 'half' (50% screen), 'full' (85% screen)
+  // Expanded sheets keep enough map height for a caption and selection badge.
   const [sheetState, setSheetState] = useState('peek');
   const [showAvgLine, setShowAvgLine] = useState(true);
   const [showTrendLine, setShowTrendLine] = useState(true);
@@ -56,7 +56,7 @@ export default function MobileBottomSheet({
   return (
     <div
       data-map-overlay="bottom"
-      className={`fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 border-t border-slate-700 rounded-t-2xl shadow-2xl backdrop-blur-md transition-all duration-300 ease-in-out select-none flex flex-col ${
+      className={`relative shrink-0 w-full max-h-[calc(100dvh-17rem)] z-40 bg-slate-900/95 border-t border-slate-700 rounded-t-2xl shadow-2xl backdrop-blur-md transition-all duration-300 ease-in-out select-none flex flex-col ${
         sheetState === 'peek' ? 'h-20' : sheetState === 'half' ? 'h-[52vh]' : 'h-[85vh]'
       }`}
     >

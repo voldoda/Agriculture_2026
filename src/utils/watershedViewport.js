@@ -31,11 +31,21 @@ export function watershedPadding(size, bottomInset = 0, rightInset = 0) {
   return { paddingTopLeft: [edge, edge], paddingBottomRight: [right, bottom] };
 }
 
-export function unobscuredWatershedPadding(map, bounds, size, { bottomInset = 0, rightInset = 0, navigationBottom = 0 }) {
+// Reserve the space above a selected point for its badge, and avoid navigation.
+export function selectionPadding(size, { topInset = 0, rightInset = 0, badgeHeight = 64 } = {}) {
+  const edge = 12;
+  return {
+    paddingTopLeft: [edge, Math.min(topInset + badgeHeight + edge, Math.max(edge, size.y - 32))],
+    paddingBottomRight: [Math.min(rightInset + edge, Math.max(edge, size.x - 48)), edge],
+  };
+}
+
+export function unobscuredWatershedPadding(map, bounds, size, { bottomInset = 0, rightInset = 0, navigationBottom = 0, topInset = 0 }) {
   const beside = watershedPadding(size, bottomInset, rightInset);
   const edge = beside.paddingTopLeft[1];
+  beside.paddingTopLeft[1] = Math.min(topInset + edge, Math.max(0, size.y - beside.paddingBottomRight[1] - 16));
   const below = watershedPadding(size, bottomInset);
-  below.paddingTopLeft[1] = navigationBottom + edge;
+  below.paddingTopLeft[1] = Math.max(navigationBottom, topInset) + edge;
   if (!rightInset || size.y - below.paddingTopLeft[1] - below.paddingBottomRight[1] < 32) return beside;
   const zoom = padding => map.getBoundsZoom(bounds, false, [
     padding.paddingTopLeft[0] + padding.paddingBottomRight[0],
